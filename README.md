@@ -39,3 +39,21 @@ launchd/com.yarbo.chicago-after-sales-dashboard-sync.plist
 ## GitHub Pages
 
 仓库发布到 GitHub Pages 后，入口就是仓库根目录的 `index.html`。
+
+公开链接：
+
+```text
+https://zhanaodu.github.io/chicago-dashboard/
+```
+
+## 自动发布到 GitHub Pages
+
+```bash
+./scripts/sync_and_publish.sh
+```
+
+这个脚本会同步飞书数据，提交更新后的 `assets/data.json`，并推送到 GitHub。定时任务文件：
+
+```text
+launchd/com.yarbo.chicago-dashboard-pages-publish.plist
+```
