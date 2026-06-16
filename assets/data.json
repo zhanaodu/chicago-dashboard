@@ -1,0 +1,1940 @@
+{
+  "source": {
+    "name": "库容流转表",
+    "url": "https://oh3i1ngnjc.feishu.cn/sheets/OGW6sJsnIh09patZsLzcDz8dnpg?sheet=J4ayxf",
+    "sheetId": "J4ayxf"
+  },
+  "syncedAt": "2026-06-15 18:31:11",
+  "snapshotCount": 16,
+  "snapshots": [
+    {
+      "date": "2026-05-28",
+      "syncedAt": "2026-06-15 18:31",
+      "skuRows": [
+        {
+          "sku": "车身 Core",
+          "inbound": 13,
+          "inventory": 897,
+          "refurbished": 0,
+          "pending": 897
+        },
+        {
+          "sku": "扫雪头 Snow Blower",
+          "inbound": 0,
+          "inventory": 281,
+          "refurbished": 0,
+          "pending": 281
+        },
+        {
+          "sku": "割草头 Lawn Mover",
+          "inbound": 7,
+          "inventory": 898,
+          "refurbished": 0,
+          "pending": 898
+        },
+        {
+          "sku": "割草头Pro",
+          "inbound": 3,
+          "inventory": 48,
+          "refurbished": 0,
+          "pending": 48
+        },
+        {
+          "sku": "吹风头 Blower",
+          "inbound": 0,
+          "inventory": 100,
+          "refurbished": 0,
+          "pending": 100
+        },
+        {
+          "sku": "无线充 Docking Station",
+          "inbound": 5,
+          "inventory": 396,
+          "refurbished": 0,
+          "pending": 396
+        },
+        {
+          "sku": "电池 Battery",
+          "inbound": 4,
+          "inventory": 574,
+          "refurbished": 0,
+          "pending": 574
+        },
+        {
+          "sku": "Trimmer",
+          "inbound": 2,
+          "inventory": 15,
+          "refurbished": 0,
+          "pending": 15
+        }
+      ],
+      "processes": [
+        {
+          "name": "冲洗",
+          "staff": 5,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 3,
+          "note": ""
+        },
+        {
+          "name": "维修",
+          "staff": 6,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 3,
+          "note": ""
+        },
+        {
+          "name": "二次检测",
+          "staff": 1,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 5,
+          "note": ""
+        },
+        {
+          "name": "二次清洁",
+          "staff": 2,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 2,
+          "note": ""
+        },
+        {
+          "name": "打包",
+          "staff": 2,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0,
+          "note": ""
+        },
+        {
+          "name": "无线充",
+          "staff": 2,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-05-29",
+      "syncedAt": "2026-06-15 18:31",
+      "skuRows": [
+        {
+          "sku": "车身 Core",
+          "inbound": 9,
+          "inventory": 897,
+          "refurbished": 0,
+          "pending": 897
+        },
+        {
+          "sku": "扫雪头 Snow Blower",
+          "inbound": 2,
+          "inventory": 281,
+          "refurbished": 0,
+          "pending": 281
+        },
+        {
+          "sku": "割草头 Lawn Mover",
+          "inbound": 10,
+          "inventory": 898,
+          "refurbished": 0,
+          "pending": 898
+        },
+        {
+          "sku": "割草头Pro",
+          "inbound": 3,
+          "inventory": 48,
+          "refurbished": 0,
+          "pending": 48
+        },
+        {
+          "sku": "吹风头 Blower",
+          "inbound": 0,
+          "inventory": 100,
+          "refurbished": 0,
+          "pending": 100
+        },
+        {
+          "sku": "无线充 Docking Station",
+          "inbound": 7,
+          "inventory": 396,
+          "refurbished": 0,
+          "pending": 396
+        },
+        {
+          "sku": "电池 Battery",
+          "inbound": 6,
+          "inventory": 574,
+          "refurbished": 0,
+          "pending": 574
+        },
+        {
+          "sku": "Trimmer",
+          "inbound": 1,
+          "inventory": 15,
+          "refurbished": 0,
+          "pending": 15
+        },
+        {
+          "sku": "Accessories",
+          "inbound": 1,
+          "inventory": 0,
+          "refurbished": 0,
+          "pending": 0
+        }
+      ],
+      "processes": [
+        {
+          "name": "冲洗",
+          "staff": 5,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 4.8,
+          "note": ""
+        },
+        {
+          "name": "维修",
+          "staff": 8,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 2.5,
+          "note": ""
+        },
+        {
+          "name": "二次检测",
+          "staff": 1,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 15,
+          "note": ""
+        },
+        {
+          "name": "二次清洁",
+          "staff": 2,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 6.5,
+          "note": ""
+        },
+        {
+          "name": "打包",
+          "staff": 2,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0,
+          "note": ""
+        },
+        {
+          "name": "无线充",
+          "staff": 2,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-05-30",
+      "syncedAt": "2026-06-15 18:31",
+      "skuRows": [
+        {
+          "sku": "车身 Core",
+          "inbound": 8,
+          "inventory": 897,
+          "refurbished": 0,
+          "pending": 897
+        },
+        {
+          "sku": "扫雪头 Snow Blower",
+          "inbound": 1,
+          "inventory": 281,
+          "refurbished": 0,
+          "pending": 281
+        },
+        {
+          "sku": "割草头 Lawn Mover",
+          "inbound": 5,
+          "inventory": 898,
+          "refurbished": 0,
+          "pending": 898
+        },
+        {
+          "sku": "割草头Pro",
+          "inbound": 2,
+          "inventory": 48,
+          "refurbished": 0,
+          "pending": 48
+        },
+        {
+          "sku": "吹风头 Blower",
+          "inbound": 0,
+          "inventory": 100,
+          "refurbished": 0,
+          "pending": 100
+        },
+        {
+          "sku": "无线充 Docking Station",
+          "inbound": 9,
+          "inventory": 396,
+          "refurbished": 0,
+          "pending": 396
+        },
+        {
+          "sku": "电池 Battery",
+          "inbound": 5,
+          "inventory": 574,
+          "refurbished": 0,
+          "pending": 574
+        },
+        {
+          "sku": "Trimmer",
+          "inbound": 2,
+          "inventory": 15,
+          "refurbished": 0,
+          "pending": 15
+        },
+        {
+          "sku": "Accessories",
+          "inbound": 3,
+          "inventory": 0,
+          "refurbished": 0,
+          "pending": 0
+        }
+      ],
+      "processes": [
+        {
+          "name": "冲洗",
+          "staff": 5,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 4,
+          "note": ""
+        },
+        {
+          "name": "维修",
+          "staff": 7,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 2.29,
+          "note": ""
+        },
+        {
+          "name": "二次检测",
+          "staff": 1,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 13,
+          "note": ""
+        },
+        {
+          "name": "二次清洁",
+          "staff": 2,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 5.5,
+          "note": ""
+        },
+        {
+          "name": "打包",
+          "staff": 2,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0,
+          "note": ""
+        },
+        {
+          "name": "无线充",
+          "staff": 2,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-05-31",
+      "syncedAt": "2026-06-15 18:31",
+      "skuRows": [
+        {
+          "sku": "车身 Core",
+          "inbound": 7,
+          "inventory": 897,
+          "refurbished": 0,
+          "pending": 897
+        },
+        {
+          "sku": "扫雪头 Snow Blower",
+          "inbound": 1,
+          "inventory": 281,
+          "refurbished": 0,
+          "pending": 281
+        },
+        {
+          "sku": "割草头 Lawn Mover",
+          "inbound": 6,
+          "inventory": 898,
+          "refurbished": 0,
+          "pending": 898
+        },
+        {
+          "sku": "割草头Pro",
+          "inbound": 5,
+          "inventory": 48,
+          "refurbished": 0,
+          "pending": 48
+        },
+        {
+          "sku": "吹风头 Blower",
+          "inbound": 0,
+          "inventory": 100,
+          "refurbished": 0,
+          "pending": 100
+        },
+        {
+          "sku": "无线充 Docking Station",
+          "inbound": 3,
+          "inventory": 396,
+          "refurbished": 0,
+          "pending": 396
+        },
+        {
+          "sku": "电池 Battery",
+          "inbound": 0,
+          "inventory": 574,
+          "refurbished": 0,
+          "pending": 574
+        },
+        {
+          "sku": "Trimmer",
+          "inbound": 0,
+          "inventory": 15,
+          "refurbished": 0,
+          "pending": 15
+        },
+        {
+          "sku": "Accessories",
+          "inbound": 2,
+          "inventory": 0,
+          "refurbished": 0,
+          "pending": 0
+        }
+      ],
+      "processes": [
+        {
+          "name": "冲洗",
+          "staff": 5,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 3.4,
+          "note": "下午3点后安排整理仓库盘库"
+        },
+        {
+          "name": "维修",
+          "staff": 7,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 1.86,
+          "note": ""
+        },
+        {
+          "name": "二次检测",
+          "staff": 1,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 14,
+          "note": ""
+        },
+        {
+          "name": "二次清洁",
+          "staff": 2,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 5,
+          "note": ""
+        },
+        {
+          "name": "打包",
+          "staff": 2,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0,
+          "note": ""
+        },
+        {
+          "name": "无线充",
+          "staff": 2,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-06-01",
+      "syncedAt": "2026-06-15 18:31",
+      "skuRows": [
+        {
+          "sku": "车身 Core",
+          "inbound": 12,
+          "inventory": 897,
+          "refurbished": 0,
+          "pending": 897
+        },
+        {
+          "sku": "扫雪头 Snow Blower",
+          "inbound": 6,
+          "inventory": 281,
+          "refurbished": 0,
+          "pending": 281
+        },
+        {
+          "sku": "割草头 Lawn Mover",
+          "inbound": 2,
+          "inventory": 898,
+          "refurbished": 0,
+          "pending": 898
+        },
+        {
+          "sku": "割草头Pro",
+          "inbound": 2,
+          "inventory": 48,
+          "refurbished": 0,
+          "pending": 48
+        },
+        {
+          "sku": "吹风头 Blower",
+          "inbound": 0,
+          "inventory": 100,
+          "refurbished": 0,
+          "pending": 100
+        },
+        {
+          "sku": "无线充 Docking Station",
+          "inbound": 10,
+          "inventory": 396,
+          "refurbished": 0,
+          "pending": 396
+        },
+        {
+          "sku": "电池 Battery",
+          "inbound": 2,
+          "inventory": 574,
+          "refurbished": 0,
+          "pending": 574
+        },
+        {
+          "sku": "Trimmer",
+          "inbound": 1,
+          "inventory": 15,
+          "refurbished": 0,
+          "pending": 15
+        },
+        {
+          "sku": "Accessories",
+          "inbound": 0,
+          "inventory": 0,
+          "refurbished": 0,
+          "pending": 0
+        }
+      ],
+      "processes": [
+        {
+          "name": "冲洗",
+          "staff": 6,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0,
+          "note": ""
+        },
+        {
+          "name": "维修",
+          "staff": 8,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 1.86,
+          "note": "维修组经手22台"
+        },
+        {
+          "name": "二次检测",
+          "staff": 1,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 14,
+          "note": ""
+        },
+        {
+          "name": "二次清洁",
+          "staff": 3,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 5,
+          "note": ""
+        },
+        {
+          "name": "打包",
+          "staff": 4,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0,
+          "note": ""
+        },
+        {
+          "name": "无线充",
+          "staff": 2,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-06-02",
+      "syncedAt": "2026-06-15 18:31",
+      "skuRows": [
+        {
+          "sku": "车身 Core",
+          "inbound": 13,
+          "inventory": 897,
+          "refurbished": 0,
+          "pending": 897
+        },
+        {
+          "sku": "扫雪头 Snow Blower",
+          "inbound": 0,
+          "inventory": 281,
+          "refurbished": 0,
+          "pending": 281
+        },
+        {
+          "sku": "割草头 Lawn Mover",
+          "inbound": 0,
+          "inventory": 898,
+          "refurbished": 0,
+          "pending": 898
+        },
+        {
+          "sku": "割草头Pro",
+          "inbound": 0,
+          "inventory": 48,
+          "refurbished": 0,
+          "pending": 48
+        },
+        {
+          "sku": "吹风头 Blower",
+          "inbound": 0,
+          "inventory": 100,
+          "refurbished": 0,
+          "pending": 100
+        },
+        {
+          "sku": "无线充 Docking Station",
+          "inbound": 3,
+          "inventory": 396,
+          "refurbished": 0,
+          "pending": 396
+        },
+        {
+          "sku": "电池 Battery",
+          "inbound": 1,
+          "inventory": 574,
+          "refurbished": 0,
+          "pending": 574
+        },
+        {
+          "sku": "Trimmer",
+          "inbound": 0,
+          "inventory": 15,
+          "refurbished": 0,
+          "pending": 15
+        },
+        {
+          "sku": "Accessories",
+          "inbound": 0,
+          "inventory": 0,
+          "refurbished": 0,
+          "pending": 0
+        }
+      ],
+      "processes": [
+        {
+          "name": "冲洗",
+          "staff": 5,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0.8,
+          "note": ""
+        },
+        {
+          "name": "维修",
+          "staff": 8,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0.571428571428571,
+          "note": "维修组经手28台"
+        },
+        {
+          "name": "二次检测",
+          "staff": 1,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 1.0625,
+          "note": ""
+        },
+        {
+          "name": "二次清洁",
+          "staff": 3,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0.619047619047619,
+          "note": ""
+        },
+        {
+          "name": "打包",
+          "staff": 5,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0,
+          "note": ""
+        },
+        {
+          "name": "实习生",
+          "staff": 2,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 17.5,
+          "note": ""
+        },
+        {
+          "name": "无线充",
+          "staff": 2,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-06-03",
+      "syncedAt": "2026-06-15 18:31",
+      "skuRows": [
+        {
+          "sku": "车身 Core",
+          "inbound": 7,
+          "inventory": 897,
+          "refurbished": 0,
+          "pending": 897
+        },
+        {
+          "sku": "扫雪头 Snow Blower",
+          "inbound": 0,
+          "inventory": 281,
+          "refurbished": 0,
+          "pending": 281
+        },
+        {
+          "sku": "割草头 Lawn Mover",
+          "inbound": 1,
+          "inventory": 898,
+          "refurbished": 0,
+          "pending": 898
+        },
+        {
+          "sku": "割草头Pro",
+          "inbound": 1,
+          "inventory": 48,
+          "refurbished": 0,
+          "pending": 48
+        },
+        {
+          "sku": "吹风头 Blower",
+          "inbound": 0,
+          "inventory": 100,
+          "refurbished": 0,
+          "pending": 100
+        },
+        {
+          "sku": "无线充 Docking Station",
+          "inbound": 3,
+          "inventory": 396,
+          "refurbished": 0,
+          "pending": 396
+        },
+        {
+          "sku": "电池 Battery",
+          "inbound": 3,
+          "inventory": 574,
+          "refurbished": 0,
+          "pending": 574
+        },
+        {
+          "sku": "Trimmer",
+          "inbound": 0,
+          "inventory": 15,
+          "refurbished": 0,
+          "pending": 15
+        },
+        {
+          "sku": "Accessories",
+          "inbound": 0,
+          "inventory": 0,
+          "refurbished": 0,
+          "pending": 0
+        }
+      ],
+      "processes": [
+        {
+          "name": "冲洗",
+          "staff": 4,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 1,
+          "note": ""
+        },
+        {
+          "name": "维修",
+          "staff": 6,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0.571428571428571,
+          "note": ""
+        },
+        {
+          "name": "二次检测",
+          "staff": 1,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 1.1875,
+          "note": ""
+        },
+        {
+          "name": "二次清洁",
+          "staff": 3,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0.619047619047619,
+          "note": "Sarah下午不在"
+        },
+        {
+          "name": "打包",
+          "staff": 4,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0,
+          "note": ""
+        },
+        {
+          "name": "实习生",
+          "staff": 2,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0,
+          "note": ""
+        },
+        {
+          "name": "无线充",
+          "staff": 0,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-06-04",
+      "syncedAt": "2026-06-15 18:31",
+      "skuRows": [
+        {
+          "sku": "车身 Core",
+          "inbound": 14,
+          "inventory": 897,
+          "refurbished": 0,
+          "pending": 897
+        },
+        {
+          "sku": "扫雪头 Snow Blower",
+          "inbound": 0,
+          "inventory": 281,
+          "refurbished": 0,
+          "pending": 281
+        },
+        {
+          "sku": "割草头 Lawn Mover",
+          "inbound": 7,
+          "inventory": 898,
+          "refurbished": 0,
+          "pending": 898
+        },
+        {
+          "sku": "割草头Pro",
+          "inbound": 3,
+          "inventory": 48,
+          "refurbished": 0,
+          "pending": 48
+        },
+        {
+          "sku": "吹风头 Blower",
+          "inbound": 0,
+          "inventory": 100,
+          "refurbished": 0,
+          "pending": 100
+        },
+        {
+          "sku": "无线充 Docking Station",
+          "inbound": 3,
+          "inventory": 396,
+          "refurbished": 0,
+          "pending": 396
+        },
+        {
+          "sku": "电池 Battery",
+          "inbound": 4,
+          "inventory": 574,
+          "refurbished": 0,
+          "pending": 574
+        },
+        {
+          "sku": "Trimmer",
+          "inbound": 2,
+          "inventory": 15,
+          "refurbished": 0,
+          "pending": 15
+        },
+        {
+          "sku": "Accessories",
+          "inbound": 0,
+          "inventory": 0,
+          "refurbished": 0,
+          "pending": 0
+        }
+      ],
+      "processes": [
+        {
+          "name": "冲洗",
+          "staff": 6,
+          "target": 25,
+          "actual": 20,
+          "perPerson": 3.33333333333333,
+          "note": ""
+        },
+        {
+          "name": "维修",
+          "staff": 7,
+          "target": 28,
+          "actual": 20,
+          "perPerson": 2.85714285714286,
+          "note": ""
+        },
+        {
+          "name": "二次检测",
+          "staff": 1,
+          "target": 16,
+          "actual": 20,
+          "perPerson": 20,
+          "note": ""
+        },
+        {
+          "name": "二次清洁",
+          "staff": 3,
+          "target": 18,
+          "actual": 17,
+          "perPerson": 5.66666666666667,
+          "note": "Sarah不在，实习生上"
+        },
+        {
+          "name": "打包",
+          "staff": 4,
+          "target": 0,
+          "actual": 22,
+          "perPerson": 5.5,
+          "note": ""
+        },
+        {
+          "name": "无线充",
+          "staff": 0,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-06-05",
+      "syncedAt": "2026-06-15 18:31",
+      "skuRows": [
+        {
+          "sku": "车身 Core",
+          "inbound": 10,
+          "inventory": 870,
+          "refurbished": 0,
+          "pending": 880
+        },
+        {
+          "sku": "扫雪头 Snow Blower",
+          "inbound": 1,
+          "inventory": 207,
+          "refurbished": 0,
+          "pending": 208
+        },
+        {
+          "sku": "割草头 Lawn Mover",
+          "inbound": 3,
+          "inventory": 839,
+          "refurbished": 0,
+          "pending": 842
+        },
+        {
+          "sku": "割草头Pro",
+          "inbound": 0,
+          "inventory": 125,
+          "refurbished": 0,
+          "pending": 125
+        },
+        {
+          "sku": "吹风头 Blower",
+          "inbound": 0,
+          "inventory": 49,
+          "refurbished": 0,
+          "pending": 49
+        },
+        {
+          "sku": "无线充 Docking Station",
+          "inbound": 2,
+          "inventory": 352,
+          "refurbished": 0,
+          "pending": 354
+        },
+        {
+          "sku": "电池 Battery",
+          "inbound": 2,
+          "inventory": 260,
+          "refurbished": 0,
+          "pending": 262
+        },
+        {
+          "sku": "Trimmer",
+          "inbound": 1,
+          "inventory": 8,
+          "refurbished": 0,
+          "pending": 9
+        },
+        {
+          "sku": "Accessories",
+          "inbound": 0,
+          "inventory": 1,
+          "refurbished": 0,
+          "pending": 1
+        }
+      ],
+      "processes": [
+        {
+          "name": "冲洗",
+          "staff": 5,
+          "target": 20,
+          "actual": 20,
+          "perPerson": 4,
+          "note": ""
+        },
+        {
+          "name": "维修",
+          "staff": 7,
+          "target": 28,
+          "actual": 20,
+          "perPerson": 2.85714285714286,
+          "note": ""
+        },
+        {
+          "name": "二次检测",
+          "staff": 1,
+          "target": 16,
+          "actual": 19,
+          "perPerson": 19,
+          "note": ""
+        },
+        {
+          "name": "二次清洁",
+          "staff": 3,
+          "target": 18,
+          "actual": 20,
+          "perPerson": 6.66666666666667,
+          "note": "Sarah不在，实习生上"
+        },
+        {
+          "name": "打包",
+          "staff": 3,
+          "target": 17,
+          "actual": 17,
+          "perPerson": 5.66666666666667,
+          "note": ""
+        },
+        {
+          "name": "实习生",
+          "staff": 2,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0,
+          "note": ""
+        },
+        {
+          "name": "无线充",
+          "staff": 0,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-06-06",
+      "syncedAt": "2026-06-15 18:31",
+      "skuRows": [
+        {
+          "sku": "车身 Core",
+          "inbound": 10,
+          "inventory": 870,
+          "refurbished": 0,
+          "pending": 880
+        },
+        {
+          "sku": "扫雪头 Snow Blower",
+          "inbound": 1,
+          "inventory": 207,
+          "refurbished": 0,
+          "pending": 208
+        },
+        {
+          "sku": "割草头 Lawn Mover",
+          "inbound": 3,
+          "inventory": 839,
+          "refurbished": 0,
+          "pending": 842
+        },
+        {
+          "sku": "割草头Pro",
+          "inbound": 0,
+          "inventory": 125,
+          "refurbished": 0,
+          "pending": 125
+        },
+        {
+          "sku": "吹风头 Blower",
+          "inbound": 0,
+          "inventory": 49,
+          "refurbished": 0,
+          "pending": 49
+        },
+        {
+          "sku": "无线充 Docking Station",
+          "inbound": 2,
+          "inventory": 352,
+          "refurbished": 0,
+          "pending": 354
+        },
+        {
+          "sku": "电池 Battery",
+          "inbound": 2,
+          "inventory": 260,
+          "refurbished": 0,
+          "pending": 262
+        },
+        {
+          "sku": "Trimmer",
+          "inbound": 1,
+          "inventory": 8,
+          "refurbished": 0,
+          "pending": 9
+        },
+        {
+          "sku": "Accessories",
+          "inbound": 0,
+          "inventory": 1,
+          "refurbished": 0,
+          "pending": 1
+        }
+      ],
+      "processes": [
+        {
+          "name": "冲洗",
+          "staff": 0,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0,
+          "note": ""
+        },
+        {
+          "name": "维修",
+          "staff": 1,
+          "target": 4,
+          "actual": 2,
+          "perPerson": 2,
+          "note": ""
+        },
+        {
+          "name": "二次检测",
+          "staff": 1,
+          "target": 16,
+          "actual": 13,
+          "perPerson": 13,
+          "note": ""
+        },
+        {
+          "name": "二次清洁",
+          "staff": 3,
+          "target": 24,
+          "actual": 16,
+          "perPerson": 5.33333333333333,
+          "note": ""
+        },
+        {
+          "name": "打包",
+          "staff": 0,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0,
+          "note": ""
+        },
+        {
+          "name": "实习生",
+          "staff": 0,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0,
+          "note": ""
+        },
+        {
+          "name": "无线充",
+          "staff": 0,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-06-08",
+      "syncedAt": "2026-06-15 18:31",
+      "skuRows": [
+        {
+          "sku": "车身 Core",
+          "inbound": 14,
+          "inventory": 880,
+          "refurbished": 0,
+          "pending": 894
+        },
+        {
+          "sku": "扫雪头 Snow Blower",
+          "inbound": 5,
+          "inventory": 208,
+          "refurbished": 0,
+          "pending": 213
+        },
+        {
+          "sku": "割草头 Lawn Mover",
+          "inbound": 3,
+          "inventory": 842,
+          "refurbished": 0,
+          "pending": 845
+        },
+        {
+          "sku": "割草头Pro",
+          "inbound": 0,
+          "inventory": 125,
+          "refurbished": 0,
+          "pending": 125
+        },
+        {
+          "sku": "吹风头 Blower",
+          "inbound": 0,
+          "inventory": 49,
+          "refurbished": 0,
+          "pending": 49
+        },
+        {
+          "sku": "无线充 Docking Station",
+          "inbound": 3,
+          "inventory": 354,
+          "refurbished": 0,
+          "pending": 357
+        },
+        {
+          "sku": "电池 Battery",
+          "inbound": 4,
+          "inventory": 262,
+          "refurbished": 0,
+          "pending": 266
+        },
+        {
+          "sku": "Trimmer",
+          "inbound": 1,
+          "inventory": 9,
+          "refurbished": 0,
+          "pending": 10
+        },
+        {
+          "sku": "Accessories",
+          "inbound": 0,
+          "inventory": 1,
+          "refurbished": 0,
+          "pending": 1
+        }
+      ],
+      "processes": [
+        {
+          "name": "冲洗",
+          "staff": 6,
+          "target": 30,
+          "actual": 22,
+          "perPerson": 3.66666666666667,
+          "note": ""
+        },
+        {
+          "name": "维修",
+          "staff": 6,
+          "target": 24,
+          "actual": 18,
+          "perPerson": 3,
+          "note": ""
+        },
+        {
+          "name": "二次检测",
+          "staff": 1,
+          "target": 16,
+          "actual": 11,
+          "perPerson": 11,
+          "note": "Mizzy 4点提早走"
+        },
+        {
+          "name": "二次清洁",
+          "staff": 4,
+          "target": 24,
+          "actual": 13,
+          "perPerson": 3.25,
+          "note": ""
+        },
+        {
+          "name": "打包",
+          "staff": 0,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0,
+          "note": ""
+        },
+        {
+          "name": "实习生",
+          "staff": 0,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-06-09",
+      "syncedAt": "2026-06-15 18:31",
+      "skuRows": [
+        {
+          "sku": "车身 Core",
+          "inbound": 6,
+          "inventory": 894,
+          "refurbished": 0,
+          "pending": 900
+        },
+        {
+          "sku": "扫雪头 Snow Blower",
+          "inbound": 0,
+          "inventory": 213,
+          "refurbished": 0,
+          "pending": 213
+        },
+        {
+          "sku": "割草头 Lawn Mover",
+          "inbound": 2,
+          "inventory": 845,
+          "refurbished": 0,
+          "pending": 847
+        },
+        {
+          "sku": "割草头Pro",
+          "inbound": 3,
+          "inventory": 125,
+          "refurbished": 0,
+          "pending": 128
+        },
+        {
+          "sku": "吹风头 Blower",
+          "inbound": 0,
+          "inventory": 49,
+          "refurbished": 0,
+          "pending": 49
+        },
+        {
+          "sku": "无线充 Docking Station",
+          "inbound": 2,
+          "inventory": 357,
+          "refurbished": 0,
+          "pending": 359
+        },
+        {
+          "sku": "电池 Battery",
+          "inbound": 0,
+          "inventory": 266,
+          "refurbished": 0,
+          "pending": 266
+        },
+        {
+          "sku": "Trimmer",
+          "inbound": 0,
+          "inventory": 10,
+          "refurbished": 0,
+          "pending": 10
+        },
+        {
+          "sku": "Accessories",
+          "inbound": 0,
+          "inventory": 1,
+          "refurbished": 0,
+          "pending": 1
+        }
+      ],
+      "processes": [
+        {
+          "name": "冲洗",
+          "staff": 5,
+          "target": 25,
+          "actual": 25,
+          "perPerson": 5,
+          "note": "一位工程师10:30到岗"
+        },
+        {
+          "name": "维修",
+          "staff": 6,
+          "target": 24,
+          "actual": 21,
+          "perPerson": 3.5,
+          "note": ""
+        },
+        {
+          "name": "二次检测",
+          "staff": 1,
+          "target": 16,
+          "actual": 15,
+          "perPerson": 15,
+          "note": "Mizzy 10:30到岗"
+        },
+        {
+          "name": "二次清洁",
+          "staff": 3,
+          "target": 18,
+          "actual": 14,
+          "perPerson": 4.66666666666667,
+          "note": "Dennis 早走"
+        },
+        {
+          "name": "打包",
+          "staff": 0,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0,
+          "note": ""
+        },
+        {
+          "name": "实习生",
+          "staff": 0,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-06-10",
+      "syncedAt": "2026-06-15 18:31",
+      "skuRows": [
+        {
+          "sku": "车身 Core",
+          "inbound": 6,
+          "inventory": 900,
+          "refurbished": 0,
+          "pending": 906
+        },
+        {
+          "sku": "扫雪头 Snow Blower",
+          "inbound": 0,
+          "inventory": 213,
+          "refurbished": 0,
+          "pending": 213
+        },
+        {
+          "sku": "割草头 Lawn Mover",
+          "inbound": 4,
+          "inventory": 847,
+          "refurbished": 0,
+          "pending": 851
+        },
+        {
+          "sku": "割草头Pro",
+          "inbound": 2,
+          "inventory": 128,
+          "refurbished": 0,
+          "pending": 130
+        },
+        {
+          "sku": "吹风头 Blower",
+          "inbound": 0,
+          "inventory": 49,
+          "refurbished": 0,
+          "pending": 49
+        },
+        {
+          "sku": "无线充 Docking Station",
+          "inbound": 1,
+          "inventory": 359,
+          "refurbished": 10,
+          "pending": 350
+        },
+        {
+          "sku": "电池 Battery",
+          "inbound": 3,
+          "inventory": 266,
+          "refurbished": 0,
+          "pending": 269
+        },
+        {
+          "sku": "Trimmer",
+          "inbound": 0,
+          "inventory": 10,
+          "refurbished": 0,
+          "pending": 10
+        },
+        {
+          "sku": "Accessories",
+          "inbound": 0,
+          "inventory": 1,
+          "refurbished": 0,
+          "pending": 1
+        }
+      ],
+      "processes": [
+        {
+          "name": "冲洗",
+          "staff": 6,
+          "target": 30,
+          "actual": 31,
+          "perPerson": 5.16666666666667,
+          "note": ""
+        },
+        {
+          "name": "维修",
+          "staff": 7,
+          "target": 28,
+          "actual": 21,
+          "perPerson": 3,
+          "note": "两名工程师下午才到"
+        },
+        {
+          "name": "二次检测",
+          "staff": 1,
+          "target": 16,
+          "actual": 15,
+          "perPerson": 15,
+          "note": "退回去7台"
+        },
+        {
+          "name": "二次清洁",
+          "staff": 3,
+          "target": 18,
+          "actual": 11,
+          "perPerson": 3.66666666666667,
+          "note": "没有足够的机器流入到二次清洁"
+        },
+        {
+          "name": "打包",
+          "staff": 4,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0,
+          "note": "50台机器待打包，等包材"
+        },
+        {
+          "name": "实习生",
+          "staff": 0,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-06-11",
+      "syncedAt": "2026-06-15 18:31",
+      "skuRows": [
+        {
+          "sku": "车身 Core",
+          "inbound": 11,
+          "inventory": 906,
+          "refurbished": 0,
+          "pending": 917
+        },
+        {
+          "sku": "扫雪头 Snow Blower",
+          "inbound": 0,
+          "inventory": 213,
+          "refurbished": 0,
+          "pending": 213
+        },
+        {
+          "sku": "割草头 Lawn Mover",
+          "inbound": 7,
+          "inventory": 851,
+          "refurbished": 0,
+          "pending": 858
+        },
+        {
+          "sku": "割草头Pro",
+          "inbound": 6,
+          "inventory": 130,
+          "refurbished": 0,
+          "pending": 136
+        },
+        {
+          "sku": "吹风头 Blower",
+          "inbound": 0,
+          "inventory": 49,
+          "refurbished": 0,
+          "pending": 49
+        },
+        {
+          "sku": "无线充 Docking Station",
+          "inbound": 4,
+          "inventory": 350,
+          "refurbished": 0,
+          "pending": 354
+        },
+        {
+          "sku": "电池 Battery",
+          "inbound": 5,
+          "inventory": 269,
+          "refurbished": 0,
+          "pending": 274
+        },
+        {
+          "sku": "Trimmer",
+          "inbound": 3,
+          "inventory": 10,
+          "refurbished": 0,
+          "pending": 13
+        },
+        {
+          "sku": "Accessories",
+          "inbound": 1,
+          "inventory": 1,
+          "refurbished": 0,
+          "pending": 2
+        }
+      ],
+      "processes": [
+        {
+          "name": "冲洗",
+          "staff": 4,
+          "target": 16,
+          "actual": 18,
+          "perPerson": 4.5,
+          "note": "清洁下水槽，目标产能调整成4台每人"
+        },
+        {
+          "name": "维修",
+          "staff": 8,
+          "target": 32,
+          "actual": 19,
+          "perPerson": 2.375,
+          "note": ""
+        },
+        {
+          "name": "二次检测",
+          "staff": 1,
+          "target": 16,
+          "actual": 16,
+          "perPerson": 16,
+          "note": ""
+        },
+        {
+          "name": "二次清洁",
+          "staff": 3,
+          "target": 18,
+          "actual": 15,
+          "perPerson": 5,
+          "note": ""
+        },
+        {
+          "name": "打包",
+          "staff": 3,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0,
+          "note": ""
+        },
+        {
+          "name": "实习生",
+          "staff": 0,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-06-12",
+      "syncedAt": "2026-06-15 18:31",
+      "skuRows": [
+        {
+          "sku": "车身 Core",
+          "inbound": 8,
+          "inventory": 917,
+          "refurbished": 0,
+          "pending": 925
+        },
+        {
+          "sku": "扫雪头 Snow Blower",
+          "inbound": 0,
+          "inventory": 213,
+          "refurbished": 0,
+          "pending": 213
+        },
+        {
+          "sku": "割草头 Lawn Mover",
+          "inbound": 3,
+          "inventory": 858,
+          "refurbished": 0,
+          "pending": 861
+        },
+        {
+          "sku": "割草头Pro",
+          "inbound": 3,
+          "inventory": 136,
+          "refurbished": 0,
+          "pending": 139
+        },
+        {
+          "sku": "吹风头 Blower",
+          "inbound": 0,
+          "inventory": 49,
+          "refurbished": 0,
+          "pending": 49
+        },
+        {
+          "sku": "无线充 Docking Station",
+          "inbound": 4,
+          "inventory": 354,
+          "refurbished": 0,
+          "pending": 358
+        },
+        {
+          "sku": "电池 Battery",
+          "inbound": 2,
+          "inventory": 274,
+          "refurbished": 0,
+          "pending": 276
+        },
+        {
+          "sku": "Trimmer",
+          "inbound": 0,
+          "inventory": 13,
+          "refurbished": 0,
+          "pending": 13
+        },
+        {
+          "sku": "Accessories",
+          "inbound": 1,
+          "inventory": 2,
+          "refurbished": 0,
+          "pending": 3
+        }
+      ],
+      "processes": [
+        {
+          "name": "冲洗",
+          "staff": 4,
+          "target": 10,
+          "actual": 9,
+          "perPerson": 2.25,
+          "note": "所有清洗员工请假半天"
+        },
+        {
+          "name": "维修",
+          "staff": 9,
+          "target": 18,
+          "actual": 18,
+          "perPerson": 2,
+          "note": "6位员工请假半天"
+        },
+        {
+          "name": "二次检测",
+          "staff": 1,
+          "target": 16,
+          "actual": 19,
+          "perPerson": 0,
+          "note": ""
+        },
+        {
+          "name": "二次清洁",
+          "staff": 3,
+          "target": 18,
+          "actual": 18,
+          "perPerson": 0,
+          "note": ""
+        },
+        {
+          "name": "打包",
+          "staff": 3,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0,
+          "note": ""
+        },
+        {
+          "name": "实习生",
+          "staff": 0,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "date": "2026-06-13",
+      "syncedAt": "2026-06-15 18:31",
+      "skuRows": [
+        {
+          "sku": "车身 Core",
+          "inbound": 0,
+          "inventory": 925,
+          "refurbished": 0,
+          "pending": 925
+        },
+        {
+          "sku": "扫雪头 Snow Blower",
+          "inbound": 0,
+          "inventory": 213,
+          "refurbished": 0,
+          "pending": 213
+        },
+        {
+          "sku": "割草头 Lawn Mover",
+          "inbound": 0,
+          "inventory": 861,
+          "refurbished": 0,
+          "pending": 861
+        },
+        {
+          "sku": "割草头Pro",
+          "inbound": 0,
+          "inventory": 139,
+          "refurbished": 0,
+          "pending": 139
+        },
+        {
+          "sku": "吹风头 Blower",
+          "inbound": 0,
+          "inventory": 49,
+          "refurbished": 0,
+          "pending": 49
+        },
+        {
+          "sku": "无线充 Docking Station",
+          "inbound": 0,
+          "inventory": 358,
+          "refurbished": 0,
+          "pending": 358
+        },
+        {
+          "sku": "电池 Battery",
+          "inbound": 0,
+          "inventory": 276,
+          "refurbished": 0,
+          "pending": 276
+        },
+        {
+          "sku": "Trimmer",
+          "inbound": 0,
+          "inventory": 13,
+          "refurbished": 0,
+          "pending": 13
+        },
+        {
+          "sku": "Accessories",
+          "inbound": 0,
+          "inventory": 3,
+          "refurbished": 0,
+          "pending": 3
+        }
+      ],
+      "processes": [
+        {
+          "name": "冲洗",
+          "staff": 0,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0,
+          "note": ""
+        },
+        {
+          "name": "维修",
+          "staff": 2,
+          "target": 8,
+          "actual": 8,
+          "perPerson": 4,
+          "note": ""
+        },
+        {
+          "name": "二次检测",
+          "staff": 1,
+          "target": 1,
+          "actual": 11,
+          "perPerson": 0,
+          "note": ""
+        },
+        {
+          "name": "二次清洁",
+          "staff": 3,
+          "target": 18,
+          "actual": 13,
+          "perPerson": 0,
+          "note": ""
+        },
+        {
+          "name": "打包",
+          "staff": 0,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0,
+          "note": ""
+        },
+        {
+          "name": "实习生",
+          "staff": 0,
+          "target": 0,
+          "actual": 0,
+          "perPerson": 0,
+          "note": ""
+        }
+      ]
+    }
+  ]
+}

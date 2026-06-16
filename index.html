@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>芝加哥售后仓看板</title>
+  <link rel="stylesheet" href="./assets/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="仪表盘侧栏">
+      <div class="brand">
+        <div class="brand-mark">
+          <span></span>
+        </div>
+        <div>
+          <h1>芝加哥售后仓</h1>
+          <p>每日退货与翻新产能看板</p>
+        </div>
+      </div>
+
+      <nav class="side-nav" aria-label="页面区块">
+        <a href="#overview">总览</a>
+        <a href="#skuTable">退货 SKU 与库存</a>
+        <a href="#processOutput">翻新流程输出</a>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">MKT Repair KPI · Chicago After-sales Warehouse</p>
+          <h2>芝加哥售后仓看板</h2>
+        </div>
+        <div class="top-actions">
+          <button class="btn secondary" type="button" id="exportSnapshot">导出快照</button>
+          <button class="btn primary" type="button" id="simulateSync">模拟刷新</button>
+        </div>
+      </header>
+
+      <section class="range-toolbar" aria-label="日期范围筛选">
+        <div class="range-tabs" role="group" aria-label="快速选择日期范围">
+          <button class="range-tab active" type="button" data-range-mode="day">单日</button>
+          <button class="range-tab" type="button" data-range-mode="week">一周</button>
+          <button class="range-tab" type="button" data-range-mode="month">一个月</button>
+          <button class="range-tab" type="button" data-range-mode="custom">自定义</button>
+        </div>
+        <label class="date-control">
+          <span>开始日期</span>
+          <input id="startDate" type="date" />
+        </label>
+        <label class="date-control">
+          <span>结束日期</span>
+          <input id="endDate" type="date" />
+        </label>
+        <label class="date-control snapshot-control">
+          <span>快速跳转</span>
+          <select id="dateSelect" aria-label="选择已有快照日期"></select>
+        </label>
+      </section>
+
+      <section class="status-strip" aria-live="polite">
+        <div>
+          <span>当前日期范围</span>
+          <strong id="currentDateLabel">-</strong>
+        </div>
+        <div>
+          <span>覆盖快照</span>
+          <strong id="snapshotCountLabel">-</strong>
+        </div>
+        <div>
+          <span>最近同步</span>
+          <strong id="lastSyncLabel">-</strong>
+        </div>
+      </section>
+
+      <section class="notice" id="noticeBox" hidden>
+        <strong>暂无范围数据</strong>
+        <span>请选择包含历史快照的日期范围。</span>
+      </section>
+
+      <section class="kpi-grid" id="overview" aria-label="关键指标"></section>
+
+      <section class="dashboard-grid">
+        <article class="panel span-8">
+          <div class="panel-head">
+            <div>
+              <h3>库存与退货趋势</h3>
+              <p>按日期汇总退货件数、总库存、待翻新库存</p>
+            </div>
+            <span class="pill" id="trendPill">2 日样例</span>
+          </div>
+          <div class="chart-legend" aria-label="图例">
+            <span><i class="legend-inventory"></i>总库存</span>
+            <span><i class="legend-inbound"></i>退货件数</span>
+            <span><i class="legend-pending"></i>待翻新库存</span>
+          </div>
+          <div class="trend-chart" id="trendChart" role="img" aria-label="库存趋势图"></div>
+        </article>
+
+        <article class="panel span-4">
+          <div class="panel-head">
+            <div>
+              <h3>范围重点</h3>
+              <p>需要运营关注的变化</p>
+            </div>
+          </div>
+          <div class="insight-list" id="insightList"></div>
+        </article>
+      </section>
+
+      <section class="dashboard-grid">
+        <article class="panel span-12">
+          <div class="panel-head">
+            <div>
+              <h3>维修 / 打包数量增长</h3>
+              <p>按日期展示维修输出与打包输出的增长变化</p>
+            </div>
+            <span class="pill" id="repairPackagePill">-</span>
+          </div>
+          <div class="chart-legend" aria-label="维修打包图例">
+            <span><i class="legend-repair"></i>维修数量</span>
+            <span><i class="legend-pack"></i>打包数量</span>
+          </div>
+          <div class="line-chart" id="repairPackageChart" role="img" aria-label="维修和打包数量增长折线图"></div>
+        </article>
+      </section>
+
+      <section class="dashboard-grid">
+        <article class="panel span-7" id="skuTable">
+          <div class="panel-head">
+            <div>
+              <h3>退货 SKU 与库存明细</h3>
+              <p>退货与翻新数量按范围汇总，库存取范围最后一天</p>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>SKU / 品类</th>
+                  <th>范围退货</th>
+                  <th>期末总库存</th>
+                  <th>范围翻新</th>
+                  <th>期末待翻新</th>
+                  <th>状态</th>
+                </tr>
+              </thead>
+              <tbody id="skuRows"></tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="panel span-5">
+          <div class="panel-head">
+            <div>
+              <h3>库存结构</h3>
+            <p>按期末待翻新库存占比</p>
+            </div>
+          </div>
+          <div class="stack-list" id="inventoryMix"></div>
+        </article>
+      </section>
+
+      <section class="panel" id="processOutput">
+        <div class="panel-head">
+          <div>
+            <h3>翻新流程输出</h3>
+            <p>目标、实际和到岗人次按所选范围汇总</p>
+          </div>
+          <span class="pill good" id="processSummary">-</span>
+        </div>
+        <div class="process-grid" id="processCards"></div>
+        <div class="table-wrap compact">
+          <table>
+            <thead>
+              <tr>
+                <th>岗位</th>
+                <th>到岗人次</th>
+                <th>目标产能</th>
+                <th>实际产能</th>
+                <th>人均产能</th>
+                <th>达标率</th>
+                <th>备注</th>
+              </tr>
+            </thead>
+            <tbody id="processRows"></tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="./assets/app.js"></script>
+</body>
+</html>
