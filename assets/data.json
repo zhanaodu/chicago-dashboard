@@ -4,12 +4,12 @@
     "url": "https://oh3i1ngnjc.feishu.cn/sheets/OGW6sJsnIh09patZsLzcDz8dnpg?sheet=J4ayxf",
     "sheetId": "J4ayxf"
   },
-  "syncedAt": "2026-06-16 10:47:31",
+  "syncedAt": "2026-06-17 10:00:11",
   "snapshotCount": 17,
   "snapshots": [
     {
       "date": "2026-05-28",
-      "syncedAt": "2026-06-16 10:47",
+      "syncedAt": "2026-06-17 10:00",
       "skuRows": [
         {
           "sku": "车身 Core",
@@ -121,7 +121,7 @@
     },
     {
       "date": "2026-05-29",
-      "syncedAt": "2026-06-16 10:47",
+      "syncedAt": "2026-06-17 10:00",
       "skuRows": [
         {
           "sku": "车身 Core",
@@ -240,7 +240,7 @@
     },
     {
       "date": "2026-05-30",
-      "syncedAt": "2026-06-16 10:47",
+      "syncedAt": "2026-06-17 10:00",
       "skuRows": [
         {
           "sku": "车身 Core",
@@ -359,7 +359,7 @@
     },
     {
       "date": "2026-05-31",
-      "syncedAt": "2026-06-16 10:47",
+      "syncedAt": "2026-06-17 10:00",
       "skuRows": [
         {
           "sku": "车身 Core",
@@ -478,7 +478,7 @@
     },
     {
       "date": "2026-06-01",
-      "syncedAt": "2026-06-16 10:47",
+      "syncedAt": "2026-06-17 10:00",
       "skuRows": [
         {
           "sku": "车身 Core",
@@ -597,7 +597,7 @@
     },
     {
       "date": "2026-06-02",
-      "syncedAt": "2026-06-16 10:47",
+      "syncedAt": "2026-06-17 10:00",
       "skuRows": [
         {
           "sku": "车身 Core",
@@ -724,7 +724,7 @@
     },
     {
       "date": "2026-06-03",
-      "syncedAt": "2026-06-16 10:47",
+      "syncedAt": "2026-06-17 10:00",
       "skuRows": [
         {
           "sku": "车身 Core",
@@ -851,7 +851,7 @@
     },
     {
       "date": "2026-06-04",
-      "syncedAt": "2026-06-16 10:47",
+      "syncedAt": "2026-06-17 10:00",
       "skuRows": [
         {
           "sku": "车身 Core",
@@ -970,7 +970,7 @@
     },
     {
       "date": "2026-06-05",
-      "syncedAt": "2026-06-16 10:47",
+      "syncedAt": "2026-06-17 10:00",
       "skuRows": [
         {
           "sku": "车身 Core",
@@ -1097,7 +1097,7 @@
     },
     {
       "date": "2026-06-06",
-      "syncedAt": "2026-06-16 10:47",
+      "syncedAt": "2026-06-17 10:00",
       "skuRows": [
         {
           "sku": "车身 Core",
@@ -1224,7 +1224,7 @@
     },
     {
       "date": "2026-06-08",
-      "syncedAt": "2026-06-16 10:47",
+      "syncedAt": "2026-06-17 10:00",
       "skuRows": [
         {
           "sku": "车身 Core",
@@ -1343,7 +1343,7 @@
     },
     {
       "date": "2026-06-09",
-      "syncedAt": "2026-06-16 10:47",
+      "syncedAt": "2026-06-17 10:00",
       "skuRows": [
         {
           "sku": "车身 Core",
@@ -1462,7 +1462,7 @@
     },
     {
       "date": "2026-06-10",
-      "syncedAt": "2026-06-16 10:47",
+      "syncedAt": "2026-06-17 10:00",
       "skuRows": [
         {
           "sku": "车身 Core",
@@ -1581,7 +1581,7 @@
     },
     {
       "date": "2026-06-11",
-      "syncedAt": "2026-06-16 10:47",
+      "syncedAt": "2026-06-17 10:00",
       "skuRows": [
         {
           "sku": "车身 Core",
@@ -1700,7 +1700,7 @@
     },
     {
       "date": "2026-06-12",
-      "syncedAt": "2026-06-16 10:47",
+      "syncedAt": "2026-06-17 10:00",
       "skuRows": [
         {
           "sku": "车身 Core",
@@ -1819,7 +1819,7 @@
     },
     {
       "date": "2026-06-15",
-      "syncedAt": "2026-06-16 10:47",
+      "syncedAt": "2026-06-17 10:00",
       "skuRows": [
         {
           "sku": "车身 Core",
@@ -1930,14 +1930,14 @@
     },
     {
       "date": "2026-06-16",
-      "syncedAt": "2026-06-16 10:47",
+      "syncedAt": "2026-06-17 10:00",
       "skuRows": [
         {
           "sku": "车身 Core",
-          "inbound": 0,
+          "inbound": 2,
           "inventory": 935,
           "refurbished": 0,
-          "pending": 935
+          "pending": 937
         },
         {
           "sku": "扫雪头 Snow Blower",
@@ -1948,17 +1948,17 @@
         },
         {
           "sku": "割草头 Lawn Mover",
-          "inbound": 0,
+          "inbound": 1,
           "inventory": 875,
           "refurbished": 0,
-          "pending": 875
+          "pending": 876
         },
         {
           "sku": "割草头Pro",
-          "inbound": 0,
+          "inbound": 1,
           "inventory": 146,
           "refurbished": 0,
-          "pending": 146
+          "pending": 147
         },
         {
           "sku": "吹风头 Blower",
@@ -1969,73 +1969,73 @@
         },
         {
           "sku": "无线充 Docking Station",
-          "inbound": 0,
+          "inbound": 2,
           "inventory": 363,
           "refurbished": 0,
-          "pending": 363
+          "pending": 365
         },
         {
           "sku": "电池 Battery",
-          "inbound": 0,
+          "inbound": 7,
           "inventory": 279,
           "refurbished": 0,
-          "pending": 279
+          "pending": 286
         },
         {
           "sku": "Trimmer",
-          "inbound": 0,
+          "inbound": 1,
           "inventory": 14,
           "refurbished": 0,
-          "pending": 14
+          "pending": 15
         },
         {
           "sku": "Accessories",
-          "inbound": 0,
+          "inbound": 1,
           "inventory": 4,
           "refurbished": 0,
-          "pending": 4
+          "pending": 5
         }
       ],
       "processes": [
         {
           "name": "冲洗",
-          "staff": 0,
-          "target": 0,
-          "actual": 0,
-          "perPerson": 0,
+          "staff": 3,
+          "target": 15,
+          "actual": 15,
+          "perPerson": 5,
           "note": ""
         },
         {
           "name": "维修",
-          "staff": 0,
-          "target": 8,
-          "actual": 8,
-          "perPerson": 0,
-          "note": ""
+          "staff": 7,
+          "target": 28,
+          "actual": 20,
+          "perPerson": 2.85714285714286,
+          "note": "有一位新人还在培训"
         },
         {
           "name": "二次检测",
-          "staff": 0,
-          "target": 1,
-          "actual": 11,
-          "perPerson": 0,
+          "staff": 2,
+          "target": 32,
+          "actual": 16,
+          "perPerson": 8,
           "note": ""
         },
         {
           "name": "二次清洁",
-          "staff": 0,
-          "target": 0,
-          "actual": 13,
-          "perPerson": 0,
+          "staff": 4,
+          "target": 24,
+          "actual": 15,
+          "perPerson": 3.75,
           "note": ""
         },
         {
           "name": "打包",
-          "staff": 0,
+          "staff": 3,
           "target": 0,
           "actual": 0,
           "perPerson": 0,
-          "note": ""
+          "note": "打包团队今天主要负责盘点"
         }
       ]
     }
