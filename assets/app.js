@@ -227,6 +227,14 @@ async function refreshFromFeishu() {
 }
 
 async function requestRealtimeRefresh() {
+  if (window.location.protocol === "https:") {
+    return requestPopupRefresh();
+  }
+
+  return requestFetchRefresh();
+}
+
+async function requestFetchRefresh() {
   let lastError = null;
 
   for (const endpoint of refreshEndpoints) {
@@ -260,6 +268,51 @@ async function requestRealtimeRefresh() {
   }
 
   throw lastError || new Error("No refresh endpoint configured");
+}
+
+function requestPopupRefresh() {
+  return new Promise((resolve, reject) => {
+    const endpoint = new URL("http://127.0.0.1:8794/refresh");
+    endpoint.searchParams.set("mode", "popup");
+    endpoint.searchParams.set("origin", window.location.origin);
+
+    const popup = window.open(
+      endpoint.toString(),
+      "chicagoDashboardRefresh",
+      "popup=yes,width=460,height=360"
+    );
+
+    if (!popup) {
+      reject(new Error("Refresh popup was blocked"));
+      return;
+    }
+
+    const allowedOrigins = new Set(["http://127.0.0.1:8794", "http://localhost:8794"]);
+    const timer = window.setTimeout(() => {
+      window.removeEventListener("message", handleMessage);
+      try {
+        popup.close();
+      } catch (error) {
+        // The popup may already be closed by the refresh service.
+      }
+      reject(new Error("Refresh popup timed out"));
+    }, 240000);
+
+    function handleMessage(event) {
+      if (!allowedOrigins.has(event.origin)) return;
+      if (!event.data || event.data.type !== "chicago-dashboard-refresh") return;
+
+      window.clearTimeout(timer);
+      window.removeEventListener("message", handleMessage);
+      if (event.data.ok) {
+        resolve(event.data);
+      } else {
+        reject(new Error(event.data.error || "Popup refresh failed"));
+      }
+    }
+
+    window.addEventListener("message", handleMessage);
+  });
 }
 
 function setRefreshState(isRefreshing) {
