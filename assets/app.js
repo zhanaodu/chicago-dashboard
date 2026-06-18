@@ -272,6 +272,7 @@ async function requestFetchRefresh() {
 
 function requestPopupRefresh() {
   return new Promise((resolve, reject) => {
+    const baselineSync = getLatestSnapshotSync(dailySnapshots);
     const endpoint = new URL("http://127.0.0.1:8794/refresh");
     endpoint.searchParams.set("mode", "popup");
     endpoint.searchParams.set("origin", window.location.origin);
@@ -288,30 +289,56 @@ function requestPopupRefresh() {
     }
 
     const allowedOrigins = new Set(["http://127.0.0.1:8794", "http://localhost:8794"]);
-    const timer = window.setTimeout(() => {
+    let settled = false;
+    let pollTimer = null;
+    const timeoutTimer = window.setTimeout(() => {
+      finish(new Error("Refresh popup timed out"));
+    }, 90000);
+
+    function finish(error, result) {
+      if (settled) return;
+      settled = true;
+      window.clearTimeout(timeoutTimer);
+      if (pollTimer) window.clearTimeout(pollTimer);
       window.removeEventListener("message", handleMessage);
-      try {
-        popup.close();
-      } catch (error) {
-        // The popup may already be closed by the refresh service.
+      if (error) {
+        reject(error);
+      } else {
+        resolve(result);
       }
-      reject(new Error("Refresh popup timed out"));
-    }, 240000);
+    }
 
     function handleMessage(event) {
       if (!allowedOrigins.has(event.origin)) return;
       if (!event.data || event.data.type !== "chicago-dashboard-refresh") return;
 
-      window.clearTimeout(timer);
-      window.removeEventListener("message", handleMessage);
       if (event.data.ok) {
-        resolve(event.data);
+        finish(null, event.data);
       } else {
-        reject(new Error(event.data.error || "Popup refresh failed"));
+        finish(new Error(event.data.error || "Popup refresh failed"));
       }
     }
 
+    async function pollPublishedData() {
+      if (settled) return;
+      try {
+        const response = await fetch(`./assets/data.json?ts=${Date.now()}`, { cache: "no-store" });
+        if (response.ok) {
+          const payload = await response.json();
+          const latestSync = getLatestSnapshotSync(payload.snapshots || []);
+          if (latestSync && latestSync !== baselineSync) {
+            finish(null, { ok: true, payload });
+            return;
+          }
+        }
+      } catch (error) {
+        console.warn("Published data polling failed:", error.message);
+      }
+      pollTimer = window.setTimeout(pollPublishedData, 4000);
+    }
+
     window.addEventListener("message", handleMessage);
+    pollTimer = window.setTimeout(pollPublishedData, 4000);
   });
 }
 
@@ -877,11 +904,15 @@ function getRate(process) {
 
 function getLastSyncLabel(range) {
   if (state.manualSyncAt) return formatDateTime(state.manualSyncAt);
-  const latest = range.snapshots
+  return getLatestSnapshotSync(range.snapshots) || "-";
+}
+
+function getLatestSnapshotSync(snapshots) {
+  return snapshots
     .map((snapshot) => snapshot.syncedAt)
+    .filter(Boolean)
     .sort()
-    .at(-1);
-  return latest || "-";
+    .at(-1) || "";
 }
 
 function buildExportText(range) {
