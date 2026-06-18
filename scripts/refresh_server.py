@@ -142,11 +142,13 @@ class RefreshHandler(BaseHTTPRequestHandler):
         if parsed.path != "/refresh":
             self.send_json(404, {"ok": False, "error": "Not found"})
             return
-        if not self.refresh_allowed():
+        query = parse_qs(parsed.query)
+        requested_origin = query.get("origin", [""])[0]
+        if not self.refresh_allowed() and requested_origin not in ALLOWED_ORIGINS:
             self.send_html(403, "<!doctype html><meta charset='utf-8'><title>403</title><p>Origin is not allowed.</p>")
             return
         status, body = self.run_refresh()
-        self.send_popup_result(status, body, parse_qs(parsed.query))
+        self.send_popup_result(status, body, query)
 
     def do_POST(self):
         if self.path != "/refresh":
