@@ -57,3 +57,17 @@ https://zhanaodu.github.io/chicago-dashboard/
 ```text
 launchd/com.yarbo.chicago-dashboard-pages-publish.plist
 ```
+
+## 页面实时刷新按钮
+
+页面里的“实时刷新”按钮会请求本机刷新服务：
+
+```text
+http://127.0.0.1:8794/refresh
+```
+
+刷新服务会执行 `scripts/sync_and_publish.sh`，重新抓取飞书数据并推送到 GitHub Pages，同时把最新 `assets/data.json` 回传给页面。定时服务文件：
+
+```text
+launchd/com.yarbo.chicago-dashboard-refresh-server.plist
+```

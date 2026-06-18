@@ -264,6 +264,14 @@ button {
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.24);
 }
 
+.btn:disabled,
+.btn.loading {
+  cursor: wait;
+  opacity: 0.72;
+  transform: none;
+  box-shadow: none;
+}
+
 .status-strip {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

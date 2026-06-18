@@ -54,8 +54,22 @@ const state = {
   mode: "day",
   startDate: "",
   endDate: "",
-  simulatedSyncAt: null
+  manualSyncAt: null,
+  isRefreshing: false
 };
+
+const refreshEndpoints = [
+  window.CHICAGO_DASHBOARD_REFRESH_URL,
+  (() => {
+    try {
+      return window.localStorage.getItem("chicagoDashboardRefreshUrl");
+    } catch (error) {
+      return "";
+    }
+  })(),
+  "http://127.0.0.1:8794/refresh",
+  "http://localhost:8794/refresh"
+].filter(Boolean);
 
 const els = {};
 
@@ -65,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
   loadDashboardData();
 });
 
-async function loadDashboardData() {
+async function loadDashboardData(options = {}) {
   try {
     const response = await fetch(`./assets/data.json?ts=${Date.now()}`, { cache: "no-store" });
     if (!response.ok) throw new Error(`data.json ${response.status}`);
@@ -73,17 +87,35 @@ async function loadDashboardData() {
     if (!Array.isArray(payload.snapshots) || !payload.snapshots.length) {
       throw new Error("data.json has no snapshots");
     }
-    dailySnapshots = payload.snapshots;
+    setDashboardData(payload.snapshots, options);
   } catch (error) {
     console.warn("Using built-in sample data:", error.message);
-    dailySnapshots = [...sampleSnapshots];
+    setDashboardData(sampleSnapshots, options);
   }
+}
 
+function setDashboardData(snapshots, options = {}) {
+  const previousRange = {
+    mode: state.mode,
+    startDate: state.startDate,
+    endDate: state.endDate
+  };
+
+  dailySnapshots = snapshots;
   sortedSnapshots = [...dailySnapshots].sort((a, b) => a.date.localeCompare(b.date));
   latestSnapshot = sortedSnapshots[sortedSnapshots.length - 1];
   earliestSnapshot = sortedSnapshots[0];
-  state.startDate = latestSnapshot.date;
-  state.endDate = latestSnapshot.date;
+
+  if (options.preserveRange && previousRange.startDate && previousRange.endDate) {
+    state.mode = previousRange.mode;
+    state.startDate = clampDate(previousRange.startDate, earliestSnapshot.date, latestSnapshot.date);
+    state.endDate = clampDate(previousRange.endDate, earliestSnapshot.date, latestSnapshot.date);
+    if (state.startDate > state.endDate) state.startDate = state.endDate;
+  } else {
+    state.startDate = latestSnapshot.date;
+    state.endDate = latestSnapshot.date;
+  }
+
   hydrateControls();
   render();
 }
@@ -94,7 +126,7 @@ function cacheElements() {
     "endDate",
     "dateSelect",
     "exportSnapshot",
-    "simulateSync",
+    "refreshData",
     "currentDateLabel",
     "snapshotCountLabel",
     "lastSyncLabel",
@@ -145,11 +177,7 @@ function bindEvents() {
     applyRangeByMode(state.mode, date);
   });
 
-  els.simulateSync.addEventListener("click", () => {
-    state.simulatedSyncAt = new Date();
-    render();
-    showToast("已模拟刷新。真实上线后这里会触发飞书抓取任务。");
-  });
+  els.refreshData.addEventListener("click", refreshFromFeishu);
 
   els.exportSnapshot.addEventListener("click", () => {
     const range = getSelectedRange();
@@ -172,6 +200,73 @@ function bindEvents() {
       showToast("浏览器不支持剪贴板，快照已输出到控制台。");
     }
   });
+}
+
+async function refreshFromFeishu() {
+  if (state.isRefreshing) return;
+
+  setRefreshState(true);
+  showToast("正在连接飞书刷新服务...");
+
+  try {
+    const result = await requestRealtimeRefresh();
+    if (!result.payload || !Array.isArray(result.payload.snapshots) || !result.payload.snapshots.length) {
+      throw new Error("Refresh service returned no snapshots");
+    }
+
+    state.manualSyncAt = new Date();
+    setDashboardData(result.payload.snapshots, { preserveRange: true });
+    showToast(`飞书数据已刷新：${result.payload.snapshotCount || result.payload.snapshots.length} 日快照`);
+  } catch (error) {
+    console.warn("Realtime refresh unavailable:", error.message);
+    await loadDashboardData({ preserveRange: true });
+    showToast("未连接到实时刷新服务，已重新读取公开数据。");
+  } finally {
+    setRefreshState(false);
+  }
+}
+
+async function requestRealtimeRefresh() {
+  let lastError = null;
+
+  for (const endpoint of refreshEndpoints) {
+    const controller = new AbortController();
+    const timer = window.setTimeout(() => controller.abort(), 180000);
+
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        mode: "cors",
+        cache: "no-store",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          trigger: "dashboard-button",
+          page: window.location.href
+        }),
+        signal: controller.signal
+      });
+
+      if (!response.ok) throw new Error(`${endpoint} ${response.status}`);
+      const result = await response.json();
+      if (!result.ok) throw new Error(result.error || `${endpoint} refresh failed`);
+      return result;
+    } catch (error) {
+      lastError = error;
+    } finally {
+      window.clearTimeout(timer);
+    }
+  }
+
+  throw lastError || new Error("No refresh endpoint configured");
+}
+
+function setRefreshState(isRefreshing) {
+  state.isRefreshing = isRefreshing;
+  els.refreshData.disabled = isRefreshing;
+  els.refreshData.textContent = isRefreshing ? "刷新中..." : "实时刷新";
+  els.refreshData.classList.toggle("loading", isRefreshing);
 }
 
 function hydrateControls() {
@@ -728,7 +823,7 @@ function getRate(process) {
 }
 
 function getLastSyncLabel(range) {
-  if (state.simulatedSyncAt) return formatDateTime(state.simulatedSyncAt);
+  if (state.manualSyncAt) return formatDateTime(state.manualSyncAt);
   const latest = range.snapshots
     .map((snapshot) => snapshot.syncedAt)
     .sort()
