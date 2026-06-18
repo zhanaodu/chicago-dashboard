@@ -208,8 +208,13 @@ async function refreshFromFeishu() {
   setRefreshState(true);
   showToast("正在连接飞书刷新服务...");
 
+  if (window.location.protocol === "https:") {
+    redirectToLocalRefresh();
+    return;
+  }
+
   try {
-    const result = await requestRealtimeRefresh();
+    const result = await requestFetchRefresh();
     if (!result.payload || !Array.isArray(result.payload.snapshots) || !result.payload.snapshots.length) {
       throw new Error("Refresh service returned no snapshots");
     }
@@ -226,12 +231,12 @@ async function refreshFromFeishu() {
   }
 }
 
-async function requestRealtimeRefresh() {
-  if (window.location.protocol === "https:") {
-    return requestPopupRefresh();
-  }
-
-  return requestFetchRefresh();
+function redirectToLocalRefresh() {
+  const endpoint = new URL("http://127.0.0.1:8794/refresh");
+  endpoint.searchParams.set("mode", "redirect");
+  endpoint.searchParams.set("origin", window.location.origin);
+  endpoint.searchParams.set("return", window.location.href);
+  window.location.assign(endpoint.toString());
 }
 
 async function requestFetchRefresh() {
@@ -268,78 +273,6 @@ async function requestFetchRefresh() {
   }
 
   throw lastError || new Error("No refresh endpoint configured");
-}
-
-function requestPopupRefresh() {
-  return new Promise((resolve, reject) => {
-    const baselineSync = getLatestSnapshotSync(dailySnapshots);
-    const endpoint = new URL("http://127.0.0.1:8794/refresh");
-    endpoint.searchParams.set("mode", "popup");
-    endpoint.searchParams.set("origin", window.location.origin);
-
-    const popup = window.open(
-      endpoint.toString(),
-      "chicagoDashboardRefresh",
-      "popup=yes,width=460,height=360"
-    );
-
-    if (!popup) {
-      reject(new Error("Refresh popup was blocked"));
-      return;
-    }
-
-    const allowedOrigins = new Set(["http://127.0.0.1:8794", "http://localhost:8794"]);
-    let settled = false;
-    let pollTimer = null;
-    const timeoutTimer = window.setTimeout(() => {
-      finish(new Error("Refresh popup timed out"));
-    }, 90000);
-
-    function finish(error, result) {
-      if (settled) return;
-      settled = true;
-      window.clearTimeout(timeoutTimer);
-      if (pollTimer) window.clearTimeout(pollTimer);
-      window.removeEventListener("message", handleMessage);
-      if (error) {
-        reject(error);
-      } else {
-        resolve(result);
-      }
-    }
-
-    function handleMessage(event) {
-      if (!allowedOrigins.has(event.origin)) return;
-      if (!event.data || event.data.type !== "chicago-dashboard-refresh") return;
-
-      if (event.data.ok) {
-        finish(null, event.data);
-      } else {
-        finish(new Error(event.data.error || "Popup refresh failed"));
-      }
-    }
-
-    async function pollPublishedData() {
-      if (settled) return;
-      try {
-        const response = await fetch(`./assets/data.json?ts=${Date.now()}`, { cache: "no-store" });
-        if (response.ok) {
-          const payload = await response.json();
-          const latestSync = getLatestSnapshotSync(payload.snapshots || []);
-          if (latestSync && latestSync !== baselineSync) {
-            finish(null, { ok: true, payload });
-            return;
-          }
-        }
-      } catch (error) {
-        console.warn("Published data polling failed:", error.message);
-      }
-      pollTimer = window.setTimeout(pollPublishedData, 4000);
-    }
-
-    window.addEventListener("message", handleMessage);
-    pollTimer = window.setTimeout(pollPublishedData, 4000);
-  });
 }
 
 function setRefreshState(isRefreshing) {

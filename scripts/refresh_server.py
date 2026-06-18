@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
+import html
 import json
 import os
 import subprocess
 import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import parse_qs, urlparse
+from urllib.parse import parse_qs, quote, urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_PATH = ROOT / "assets" / "data.json"
@@ -128,6 +129,78 @@ class RefreshHandler(BaseHTTPRequestHandler):
 </html>"""
         self.send_html(status, html)
 
+    def send_redirect_result(self, status, body, query):
+        return_url = query.get("return", ["https://zhanaodu.github.io/chicago-dashboard/"])[0]
+        parsed_return = urlparse(return_url)
+        return_origin = f"{parsed_return.scheme}://{parsed_return.netloc}" if parsed_return.scheme and parsed_return.netloc else ""
+        if return_origin not in ALLOWED_ORIGINS:
+            return_url = "https://zhanaodu.github.io/chicago-dashboard/"
+
+        separator = "&" if "?" in return_url else "?"
+        refreshed_at = quote((body.get("payload") or {}).get("syncedAt", ""))
+        target_url = f"{return_url}{separator}refreshed={refreshed_at}"
+        target = json.dumps(target_url)
+        expected_sync = json.dumps((body.get("payload") or {}).get("syncedAt", ""))
+        public_data_url = json.dumps("https://zhanaodu.github.io/chicago-dashboard/assets/data.json")
+
+        if body.get("ok"):
+            title = "正在发布最新数据"
+            message = "飞书同步完成，正在等待看板发布，完成后会自动返回。"
+            script = f"""
+    const target = {target};
+    const expectedSync = {expected_sync};
+    const dataUrl = {public_data_url};
+    let attempts = 0;
+    async function waitForPublish() {{
+      attempts += 1;
+      try {{
+        const response = await fetch(`${{dataUrl}}?ts=${{Date.now()}}`, {{ cache: "no-store" }});
+        const payload = await response.json();
+        if (payload.syncedAt === expectedSync) {{
+          window.location.replace(target);
+          return;
+        }}
+      }} catch (error) {{
+        // Keep polling until GitHub Pages finishes publishing.
+      }}
+      if (attempts >= 30) {{
+        window.location.replace(target);
+        return;
+      }}
+      window.setTimeout(waitForPublish, 3000);
+    }}
+    waitForPublish();
+"""
+        else:
+            title = "刷新失败"
+            message = html.escape(body.get("error") or body.get("stderr") or "飞书刷新失败。")
+            script = ""
+
+        page = f"""<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <style>
+    body {{ margin: 0; min-height: 100vh; display: grid; place-items: center; background: #080a0f; color: #f7f4e8; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; }}
+    main {{ width: min(420px, calc(100vw - 32px)); padding: 28px; border: 1px solid rgba(255, 210, 28, .28); border-radius: 8px; background: #11151d; }}
+    h1 {{ margin: 0 0 10px; color: #ffd21c; font-size: 24px; }}
+    p {{ margin: 0 0 18px; color: #c8c3a8; line-height: 1.7; }}
+    a {{ color: #ffd21c; font-weight: 800; }}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>{title}</h1>
+    <p>{message}</p>
+    <a href={target}>返回看板</a>
+  </main>
+  <script>{script}</script>
+</body>
+</html>"""
+        self.send_html(status, page)
+
     def do_OPTIONS(self):
         if not self.origin_allowed():
             self.send_json(403, {"ok": False, "error": "Origin is not allowed"})
@@ -148,7 +221,10 @@ class RefreshHandler(BaseHTTPRequestHandler):
             self.send_html(403, "<!doctype html><meta charset='utf-8'><title>403</title><p>Origin is not allowed.</p>")
             return
         status, body = self.run_refresh()
-        self.send_popup_result(status, body, query)
+        if query.get("mode", [""])[0] == "redirect":
+            self.send_redirect_result(status, body, query)
+        else:
+            self.send_popup_result(status, body, query)
 
     def do_POST(self):
         if self.path != "/refresh":

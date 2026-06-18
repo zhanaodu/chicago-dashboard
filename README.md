@@ -68,7 +68,7 @@ http://127.0.0.1:8794/refresh
 
 刷新服务会执行 `scripts/sync_and_publish.sh`，重新抓取飞书数据并推送到 GitHub Pages，同时把最新 `assets/data.json` 回传给页面。定时服务文件：
 
-公开的 HTTPS 页面会打开一个本机刷新小窗口，刷新完成后自动把结果回传到原页面。
+公开的 HTTPS 页面会短暂跳转到本机刷新服务；飞书同步和 GitHub Pages 发布完成后，会自动返回看板。
 
 ```text
 launchd/com.yarbo.chicago-dashboard-refresh-server.plist
