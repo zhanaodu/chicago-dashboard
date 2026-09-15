@@ -1,962 +1,187 @@
-const sampleSnapshots = [
-  {
-    date: "2026-06-12",
-    syncedAt: "2026-06-12 10:05",
-    skuRows: [
-      { sku: "车身 Core", inbound: 8, inventory: 917, refurbished: 0, pending: 925 },
-      { sku: "扫雪头 Snow Blower", inbound: 0, inventory: 213, refurbished: 0, pending: 213 },
-      { sku: "割草头 Lawn Mower", inbound: 3, inventory: 858, refurbished: 0, pending: 861 },
-      { sku: "割草头 Pro", inbound: 3, inventory: 136, refurbished: 0, pending: 139 },
-      { sku: "吹风头 Blower", inbound: 0, inventory: 49, refurbished: 0, pending: 49 },
-      { sku: "无线充 Docking Station", inbound: 4, inventory: 354, refurbished: 0, pending: 358 },
-      { sku: "电池 Battery", inbound: 2, inventory: 274, refurbished: 0, pending: 276 },
-      { sku: "Trimmer", inbound: 0, inventory: 13, refurbished: 0, pending: 13 },
-      { sku: "Accessories", inbound: 1, inventory: 2, refurbished: 0, pending: 3 }
-    ],
-    processes: [
-      { name: "冲洗", staff: 4, target: 10, actual: 9, perPerson: 2.25, note: "所有清洗员工请假半天" },
-      { name: "维修", staff: 9, target: 18, actual: 18, perPerson: 2, note: "6 位员工请假半天" },
-      { name: "二次检测", staff: 1, target: 16, actual: 19, perPerson: 19, note: "" },
-      { name: "二次清洁", staff: 3, target: 18, actual: 18, perPerson: 6, note: "" },
-      { name: "打包", staff: 3, target: 0, actual: 0, perPerson: 0, note: "当天未录入目标产能" }
-    ]
-  },
-  {
-    date: "2026-06-13",
-    syncedAt: "2026-06-13 10:04",
-    skuRows: [
-      { sku: "车身 Core", inbound: 0, inventory: 925, refurbished: 0, pending: 925 },
-      { sku: "扫雪头 Snow Blower", inbound: 0, inventory: 213, refurbished: 0, pending: 213 },
-      { sku: "割草头 Lawn Mower", inbound: 0, inventory: 861, refurbished: 0, pending: 861 },
-      { sku: "割草头 Pro", inbound: 0, inventory: 139, refurbished: 0, pending: 139 },
-      { sku: "吹风头 Blower", inbound: 0, inventory: 49, refurbished: 0, pending: 49 },
-      { sku: "无线充 Docking Station", inbound: 0, inventory: 358, refurbished: 0, pending: 358 },
-      { sku: "电池 Battery", inbound: 0, inventory: 276, refurbished: 0, pending: 276 },
-      { sku: "Trimmer", inbound: 0, inventory: 13, refurbished: 0, pending: 13 },
-      { sku: "Accessories", inbound: 0, inventory: 3, refurbished: 0, pending: 3 }
-    ],
-    processes: [
-      { name: "冲洗", staff: 0, target: 0, actual: 0, perPerson: 0, note: "" },
-      { name: "维修", staff: 2, target: 8, actual: 8, perPerson: 4, note: "" },
-      { name: "二次检测", staff: 1, target: 1, actual: 11, perPerson: 11, note: "" },
-      { name: "二次清洁", staff: 3, target: 18, actual: 13, perPerson: 4.33, note: "" },
-      { name: "打包", staff: 0, target: 0, actual: 0, perPerson: 0, note: "" }
-    ]
-  }
-];
+"use strict";
+const $ = (id) => document.getElementById(id);
+const esc = (value) => String(value ?? "").replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const valid = (value) => typeof value === "number" && Number.isFinite(value);
+const fmt = (value) => valid(value) ? new Intl.NumberFormat("zh-CN", {maximumFractionDigits:2}).format(value) : "—";
+const pct = (value) => valid(value) ? `${(value * 100).toFixed(1)}%` : "—";
+const sum = (rows, field) => { const numbers = rows.map((r) => r[field]).filter(valid); return numbers.length ? numbers.reduce((a,b) => a+b,0) : null; };
+const shiftDay = (day, amount) => { const date = new Date(`${day}T12:00:00Z`); date.setUTCDate(date.getUTCDate()+amount); return date.toISOString().slice(0,10); };
+const validDay = (day) => /^\d{4}-\d{2}-\d{2}$/.test(day) && !Number.isNaN(Date.parse(`${day}T12:00:00Z`)) && shiftDay(day,0)===day;
+const boundedDay = (day,first,last) => validDay(day) ? (day<first?first:day>last?last:day) : last;
+const params = new URLSearchParams(location.search);
+const state = {data:null,start:params.get("start")||"",end:params.get("end")||"",line:params.get("line")||"",mode:"day"};
 
-let dailySnapshots = [...sampleSnapshots];
-let sortedSnapshots = [...dailySnapshots].sort((a, b) => a.date.localeCompare(b.date));
-let latestSnapshot = sortedSnapshots[sortedSnapshots.length - 1];
-let earliestSnapshot = sortedSnapshots[0];
+function notice(message) { $("message").textContent=message; $("message").hidden=!message; }
+function sourceTime(value) { const parsed = new Date(value); return Number.isNaN(parsed.valueOf()) ? value : new Intl.DateTimeFormat("zh-CN",{timeZone:"Asia/Shanghai",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit"}).format(parsed); }
 
-const state = {
-  mode: "day",
-  startDate: "",
-  endDate: "",
-  manualSyncAt: null,
-  isRefreshing: false
-};
-
-const refreshEndpoints = [
-  window.CHICAGO_DASHBOARD_REFRESH_URL,
-  (() => {
-    try {
-      return window.localStorage.getItem("chicagoDashboardRefreshUrl");
-    } catch (error) {
-      return "";
-    }
-  })(),
-  "http://127.0.0.1:8794/refresh",
-  "http://localhost:8794/refresh"
-].filter(Boolean);
-
-const els = {};
-
-document.addEventListener("DOMContentLoaded", () => {
-  cacheElements();
-  bindEvents();
-  loadDashboardData();
-});
-
-async function loadDashboardData(options = {}) {
+async function loadData() {
+  $("refreshData").disabled=true;
   try {
-    const response = await fetch(`./assets/data.json?ts=${Date.now()}`, { cache: "no-store" });
-    if (!response.ok) throw new Error(`data.json ${response.status}`);
-    const payload = await response.json();
-    if (!Array.isArray(payload.snapshots) || !payload.snapshots.length) {
-      throw new Error("data.json has no snapshots");
-    }
-    setDashboardData(payload.snapshots, options);
-  } catch (error) {
-    console.warn("Using built-in sample data:", error.message);
-    setDashboardData(sampleSnapshots, options);
-  }
+    const response=await fetch(`./assets/data.json?t=${Date.now()}`,{cache:"no-store"});
+    if(!response.ok) throw new Error(`HTTP ${response.status}`);
+    const data=await response.json();
+    if(data.schemaVersion!==2 || !Array.isArray(data.snapshots) || !data.snapshots.length) throw new Error("数据格式尚未更新");
+    data.snapshots.sort((a,b)=>a.date.localeCompare(b.date));
+    state.data=data;
+    const first=data.snapshots[0].date, last=data.snapshots.at(-1).date;
+    state.start=boundedDay(state.start,first,last); state.end=boundedDay(state.end,first,last);
+    if(state.start>state.end)state.start=state.end;
+    state.mode=state.start===state.end?'day':'custom';
+    for(const id of ["startDate","endDate"]) {$(id).min=first;$(id).max=last;}
+    const lines=[...new Set(data.snapshots.flatMap((s)=>s.processes.map((p)=>p.line)))].sort();
+    $("lineSelect").innerHTML='<option value="">全部产线</option>'+lines.map((line)=>`<option value="${esc(line)}">${esc(line)}</option>`).join("");
+    if(!lines.includes(state.line)) state.line="";
+    $("lineSelect").value=state.line;
+    $("syncLabel").textContent=`同步 ${sourceTime(data.syncedAt)} · 北京时间`;
+    $("sourceLabel").textContent=`${data.source.name} · ${data.snapshotCount} 个记录日 · ${first} 至 ${last}`;
+    notice(""); render();
+  } catch(error) {
+    notice(`读取失败：${error.message}。${state.data ? "已保留上次成功加载的数据。" : "请稍后点击更新看板重试。"}`);
+  } finally {$("refreshData").disabled=false;}
 }
 
-function setDashboardData(snapshots, options = {}) {
-  const previousRange = {
-    mode: state.mode,
-    startDate: state.startDate,
-    endDate: state.endDate
-  };
-
-  dailySnapshots = snapshots;
-  sortedSnapshots = [...dailySnapshots].sort((a, b) => a.date.localeCompare(b.date));
-  latestSnapshot = sortedSnapshots[sortedSnapshots.length - 1];
-  earliestSnapshot = sortedSnapshots[0];
-
-  if (options.preserveRange && previousRange.startDate && previousRange.endDate) {
-    state.mode = previousRange.mode;
-    state.startDate = clampDate(previousRange.startDate, earliestSnapshot.date, latestSnapshot.date);
-    state.endDate = clampDate(previousRange.endDate, earliestSnapshot.date, latestSnapshot.date);
-    if (state.startDate > state.endDate) state.startDate = state.endDate;
-  } else {
-    state.startDate = latestSnapshot.date;
-    state.endDate = latestSnapshot.date;
-  }
-
-  hydrateControls();
-  render();
+function rowsFor(snapshot) {return snapshot.processes.filter((p)=>!state.line||p.line===state.line).map((p)=>({...p,date:snapshot.date}));}
+function performance(rows) {
+  const targeted=rows.filter((r)=>valid(r.actual)&&valid(r.target)&&r.target>0);
+  const staffed=rows.filter((r)=>valid(r.actual)&&valid(r.fte)&&r.fte>0);
+  return {rate:targeted.length?sum(targeted,"actual")/sum(targeted,"target"):null,perPerson:staffed.length?sum(staffed,"actual")/sum(staffed,"fte"):null,targeted:targeted.length};
 }
-
-function cacheElements() {
-  [
-    "startDate",
-    "endDate",
-    "dateSelect",
-    "exportSnapshot",
-    "refreshData",
-    "currentDateLabel",
-    "snapshotCountLabel",
-    "lastSyncLabel",
-    "noticeBox",
-    "overview",
-    "trendChart",
-    "trendPill",
-    "repairPackageChart",
-    "repairPackagePill",
-    "insightList",
-    "skuRows",
-    "inventoryMix",
-    "processSummary",
-    "processCards",
-    "processRows",
-    "toast"
-  ].forEach((id) => {
-    els[id] = document.getElementById(id);
-  });
+function roleTotal(rows, pattern) {return sum(rows.filter((p)=>pattern.test(p.name)),"actual");}
+function stockTotal(snapshot) {
+  return snapshot.skuRows.length && snapshot.skuRows.every((r)=>valid(r.closing)) ? sum(snapshot.skuRows,"closing") : null;
 }
-
-function bindEvents() {
-  document.querySelectorAll("[data-range-mode]").forEach((button) => {
-    button.addEventListener("click", () => {
-      setMode(button.dataset.rangeMode);
-    });
-  });
-
-  els.startDate.addEventListener("change", () => {
-    state.mode = "custom";
-    state.startDate = normalizeDateInput(els.startDate.value, state.startDate);
-    if (state.startDate > state.endDate) state.endDate = state.startDate;
-    syncInputs();
-    render();
-  });
-
-  els.endDate.addEventListener("change", () => {
-    state.mode = "custom";
-    state.endDate = normalizeDateInput(els.endDate.value, state.endDate);
-    if (state.endDate < state.startDate) state.startDate = state.endDate;
-    syncInputs();
-    render();
-  });
-
-  els.dateSelect.addEventListener("change", (event) => {
-    const date = event.target.value;
-    if (!date) return;
-    applyRangeByMode(state.mode, date);
-  });
-
-  els.refreshData.addEventListener("click", refreshFromFeishu);
-
-  els.exportSnapshot.addEventListener("click", () => {
-    const range = getSelectedRange();
-    if (!range.snapshots.length) {
-      showToast("当前范围暂无快照可导出。");
-      return;
-    }
-
-    const text = buildExportText(range);
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(text).then(
-        () => showToast("当前范围快照已复制到剪贴板。"),
-        () => {
-          console.log(text);
-          showToast("复制失败，快照已输出到控制台。");
-        }
-      );
-    } else {
-      console.log(text);
-      showToast("浏览器不支持剪贴板，快照已输出到控制台。");
-    }
-  });
-}
-
-async function refreshFromFeishu() {
-  if (state.isRefreshing) return;
-
-  setRefreshState(true);
-  showToast("正在连接飞书刷新服务...");
-
-  if (window.location.protocol === "https:") {
-    redirectToLocalRefresh();
-    return;
-  }
-
-  try {
-    const result = await requestFetchRefresh();
-    if (!result.payload || !Array.isArray(result.payload.snapshots) || !result.payload.snapshots.length) {
-      throw new Error("Refresh service returned no snapshots");
-    }
-
-    state.manualSyncAt = new Date();
-    setDashboardData(result.payload.snapshots, { preserveRange: true });
-    showToast(`飞书数据已刷新：${result.payload.snapshotCount || result.payload.snapshots.length} 日快照`);
-  } catch (error) {
-    console.warn("Realtime refresh unavailable:", error.message);
-    await loadDashboardData({ preserveRange: true });
-    showToast("未连接到实时刷新服务，已重新读取公开数据。");
-  } finally {
-    setRefreshState(false);
-  }
-}
-
-function redirectToLocalRefresh() {
-  const endpoint = new URL("http://127.0.0.1:8794/refresh");
-  endpoint.searchParams.set("mode", "redirect");
-  endpoint.searchParams.set("origin", window.location.origin);
-  endpoint.searchParams.set("return", window.location.href);
-  window.location.assign(endpoint.toString());
-}
-
-async function requestFetchRefresh() {
-  let lastError = null;
-
-  for (const endpoint of refreshEndpoints) {
-    const controller = new AbortController();
-    const timer = window.setTimeout(() => controller.abort(), 180000);
-
-    try {
-      const response = await fetch(endpoint, {
-        method: "POST",
-        mode: "cors",
-        cache: "no-store",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          trigger: "dashboard-button",
-          page: window.location.href
-        }),
-        signal: controller.signal
-      });
-
-      if (!response.ok) throw new Error(`${endpoint} ${response.status}`);
-      const result = await response.json();
-      if (!result.ok) throw new Error(result.error || `${endpoint} refresh failed`);
-      return result;
-    } catch (error) {
-      lastError = error;
-    } finally {
-      window.clearTimeout(timer);
-    }
-  }
-
-  throw lastError || new Error("No refresh endpoint configured");
-}
-
-function setRefreshState(isRefreshing) {
-  state.isRefreshing = isRefreshing;
-  els.refreshData.disabled = isRefreshing;
-  els.refreshData.textContent = isRefreshing ? "刷新中..." : "实时刷新";
-  els.refreshData.classList.toggle("loading", isRefreshing);
-}
-
-function hydrateControls() {
-  els.dateSelect.innerHTML = sortedSnapshots
-    .map((snapshot) => `<option value="${snapshot.date}">${formatDate(snapshot.date)}</option>`)
-    .join("");
-
-  [els.startDate, els.endDate].forEach((input) => {
-    input.min = earliestSnapshot.date;
-    input.max = latestSnapshot.date;
-  });
-
-  syncInputs();
-}
-
-function setMode(mode) {
-  applyRangeByMode(mode, state.endDate);
-}
-
-function applyRangeByMode(mode, anchorDate) {
-  state.mode = mode;
-  const safeAnchor = clampDate(anchorDate, earliestSnapshot.date, latestSnapshot.date);
-
-  if (mode === "day") {
-    state.startDate = safeAnchor;
-    state.endDate = safeAnchor;
-  } else if (mode === "week") {
-    state.endDate = safeAnchor;
-    state.startDate = addDays(safeAnchor, -6);
-  } else if (mode === "month") {
-    state.endDate = safeAnchor;
-    state.startDate = addDays(safeAnchor, -29);
-  }
-
-  syncInputs();
-  render();
-}
-
-function syncInputs() {
-  els.startDate.value = state.startDate;
-  els.endDate.value = state.endDate;
-  els.dateSelect.value = hasSnapshot(state.endDate) ? state.endDate : latestSnapshot.date;
-
-  document.querySelectorAll("[data-range-mode]").forEach((button) => {
-    button.classList.toggle("active", button.dataset.rangeMode === state.mode);
-  });
+function metric(label,value,note) {return `<article class="metric"><span class="label">${label}</span><strong>${value}</strong><small>${note}</small></article>`;}
+function cells(values) {return values.map((v)=>`<td>${v}</td>`).join("");}
+function saveRange() {
+  const url=new URL(location.href);url.search="";
+  url.searchParams.set("start",state.start);url.searchParams.set("end",state.end);
+  if(state.line) url.searchParams.set("line",state.line);
+  history.replaceState(null,"",url);
 }
 
 function render() {
-  const range = getSelectedRange();
-  const hasData = range.snapshots.length > 0;
-
-  els.noticeBox.hidden = hasData;
-  els.currentDateLabel.textContent = rangeLabel(state.startDate, state.endDate);
-  els.snapshotCountLabel.textContent = hasData ? `${range.snapshots.length} 日数据` : "0 日数据";
-  els.lastSyncLabel.textContent = hasData ? getLastSyncLabel(range) : "-";
-
-  if (!hasData) {
-    clearDashboard();
-    return;
+  if(!state.data) return;
+  $("startDate").value=state.start;$("endDate").value=state.end;
+  document.querySelectorAll("[data-mode]").forEach((b)=>b.classList.toggle("active",b.dataset.mode===state.mode));
+  saveRange();
+  const days=state.data.snapshots.filter((s)=>s.date>=state.start&&s.date<=state.end);
+  $("rangeLabel").textContent=`${state.start} 至 ${state.end} · ${days.length} 个记录日 · ${state.line||"全部产线"}`;
+  if(!days.length) {
+    notice("所选范围没有日记录。未将无记录日期补成零。");
+    ["metrics","lineCards","processRows","skuRows","dailyRows","issueRows","inventoryChart","flowChart","outputChart"].forEach((id)=>$(id).replaceChildren());
+    $("dailyCount").textContent="0 个记录日";$("qualitySummary").textContent="无记录";$("issuesSummary").textContent="无核对事项";return;
   }
-
-  renderKpis(range);
-  renderTrend(range);
-  renderRepairPackageTrend(range);
-  renderInsights(range);
-  renderSkuTable(range);
-  renderInventoryMix(range);
-  renderProcesses(range);
+  const procs=days.flatMap(rowsFor), inventory=days.flatMap((d)=>d.skuRows);
+  const summary=performance(procs), latest=days.at(-1), lastStock=stockTotal(latest);
+  $("metrics").innerHTML=[
+    metric("期末库存 · 全仓",fmt(lastStock),`${latest.date} · 件`),
+    metric("入库 · 已录入",fmt(sum(inventory,"inbound")),`${inventory.filter((r)=>valid(r.inbound)).length}/${inventory.length} 条 SKU 日记录有数值`),
+    metric("出库 · 已录入",fmt(sum(inventory,"outbound")),`${inventory.filter((r)=>valid(r.outbound)).length}/${inventory.length} 条 SKU 日记录有数值`),
+    metric("维修输出",fmt(roleTotal(procs,/维修/)),"工序件次 · 按产线筛选"),
+    metric("打包输出",fmt(roleTotal(procs,/打包/)),"含翻新与退运 · 按产线筛选"),
+    metric("有效目标达标率",pct(summary.rate),`${summary.targeted} 条产出与正目标成对记录`),
+    metric("实际工作人日",fmt(sum(procs,"fte")),"按各工序折算时长累计，非去重人数")
+  ].join("");
+  const timeline=[];const lookup=new Map(days.map((d)=>[d.date,d]));
+  for(let d=state.start;d<=state.end;d=shiftDay(d,1)) timeline.push({date:d,record:lookup.get(d)});
+  chart("inventoryChart",timeline,[{name:"期末库存",color:"#ffda27",read:(s)=>stockTotal(s)}]);
+  chart("flowChart",timeline,[{name:"入库（已录入）",color:"#ffda27",read:(s)=>sum(s.skuRows,"inbound")},{name:"出库（已录入）",color:"#84d7b5",read:(s)=>sum(s.skuRows,"outbound")}]);
+  chart("outputChart",timeline,[{name:"维修",color:"#ffda27",read:(s)=>roleTotal(rowsFor(s),/维修/)},{name:"打包",color:"#8bc6f5",read:(s)=>roleTotal(rowsFor(s),/打包/)}]);
+  renderLines(procs);renderStock(days);renderDaily(days);renderIssues(days);
 }
 
-function renderKpis(range) {
-  const summary = summarizeRange(range);
-  const previousRange = getPreviousRange(range);
-  const previousSummary = previousRange.snapshots.length ? summarizeRange(previousRange) : null;
-  const scopeText = `${range.snapshots.length} 日快照`;
-
-  const cards = [
-    {
-      title: "退货 SKU 数量",
-      value: summary.returnSkuCount,
-      unit: "个",
-      note: `范围内有退货入库的 SKU，占全部 ${summary.skuRows.length} 个 SKU`,
-      cls: summary.returnSkuCount > 0 ? "warn" : "good"
-    },
-    {
-      title: "退货件数",
-      value: summary.inboundTotal,
-      unit: "件",
-      note: deltaText(summary.inboundTotal, previousSummary?.inboundTotal, scopeText),
-      cls: summary.inboundTotal > 0 ? "warn" : "good"
-    },
-    {
-      title: "期末总库存",
-      value: summary.inventoryTotal,
-      unit: "件",
-      note: `取 ${formatDate(range.latest.date)} 快照库存`,
-      cls: ""
-    },
-    {
-      title: "期末待翻新库存",
-      value: summary.pendingTotal,
-      unit: "件",
-      note: `占期末总库存 ${formatPercent(summary.pendingTotal / Math.max(summary.inventoryTotal, 1))}`,
-      cls: summary.pendingTotal > summary.inventoryTotal ? "warn" : ""
-    },
-    {
-      title: "流程总输出",
-      value: summary.processActualTotal,
-      unit: "件",
-      note: `目标 ${summary.processTargetTotal} 件，达成 ${formatPercent(summary.processRate)}`,
-      cls: summary.processRate >= 1 ? "good" : "warn"
-    },
-    {
-      title: "到岗人次",
-      value: summary.staffTotal,
-      unit: "人次",
-      note: `综合人效 ${round(summary.processActualTotal / Math.max(summary.staffTotal, 1), 2)} 件/人次`,
-      cls: ""
-    },
-    {
-      title: "低达标流程",
-      value: summary.lowRateCount,
-      unit: "个",
-      note: summary.lowRateCount ? "达标率低于 90%，建议复盘产能或排班" : "全部有目标流程达标稳定",
-      cls: summary.lowRateCount ? "warn" : "good"
-    },
-    {
-      title: "最大库存 SKU",
-      value: summary.topInventory.sku,
-      unit: "",
-      note: `${summary.topInventory.sku}，期末待翻新 ${summary.topInventory.pending} 件`,
-      cls: ""
-    }
-  ];
-
-  els.overview.innerHTML = cards
-    .map((card) => `
-      <article class="kpi-card ${card.cls}">
-        <span>${card.title}</span>
-        <strong>${formatNumber(card.value)}${card.unit ? `<small> ${card.unit}</small>` : ""}</strong>
-        <small>${card.note}</small>
-      </article>
-    `)
-    .join("");
-}
-
-function renderTrend(range) {
-  const summaries = range.snapshots.map((snapshot) => ({
-    date: snapshot.date,
-    ...summarizeSnapshot(snapshot)
-  }));
-
-  if (!summaries.length) {
-    els.trendChart.innerHTML = `<div class="empty-chart">当前范围暂无趋势数据</div>`;
-    return;
-  }
-
-  const maxInventory = Math.max(...summaries.map((item) => item.inventoryTotal), ...summaries.map((item) => item.pendingTotal), 1);
-  const maxInbound = Math.max(...summaries.map((item) => item.inboundTotal), 1);
-  const width = 860;
-  const height = 320;
-  const pad = { top: 34, right: 32, bottom: 48, left: 60 };
-  const innerWidth = width - pad.left - pad.right;
-  const innerHeight = height - pad.top - pad.bottom;
-  const slot = innerWidth / summaries.length;
-  const points = summaries.map((item, index) => {
-    const x = pad.left + slot * index + slot / 2;
-    const y = pad.top + innerHeight - (item.pendingTotal / maxInventory) * innerHeight;
-    return `${x},${y}`;
-  });
-
-  els.trendPill.textContent = `${summaries.length} 日快照`;
-
-  els.trendChart.innerHTML = `
-    <svg viewBox="0 0 ${width} ${height}" preserveAspectRatio="none" aria-hidden="true">
-      <rect x="0" y="0" width="${width}" height="${height}" rx="8" fill="#11151d" />
-      <line x1="${pad.left}" y1="${pad.top + innerHeight}" x2="${width - pad.right}" y2="${pad.top + innerHeight}" stroke="#343a44" />
-      <line x1="${pad.left}" y1="${pad.top}" x2="${pad.left}" y2="${pad.top + innerHeight}" stroke="#343a44" />
-      ${[0.25, 0.5, 0.75, 1].map((level) => {
-        const y = pad.top + innerHeight - innerHeight * level;
-        return `<line x1="${pad.left}" y1="${y}" x2="${width - pad.right}" y2="${y}" stroke="#242a33" />`;
-      }).join("")}
-      ${summaries.map((item, index) => {
-        const x = pad.left + slot * index + slot * 0.23;
-        const barWidth = Math.min(54, Math.max(18, slot * 0.18));
-        const inventoryHeight = (item.inventoryTotal / maxInventory) * innerHeight;
-        const inboundHeight = (item.inboundTotal / maxInbound) * (innerHeight * 0.45);
-        const inventoryY = pad.top + innerHeight - inventoryHeight;
-        const inboundY = pad.top + innerHeight - inboundHeight;
-        const pendingY = pad.top + innerHeight - (item.pendingTotal / maxInventory) * innerHeight;
-        const centerX = pad.left + slot * index + slot / 2;
-        return `
-          <rect x="${x}" y="${inventoryY}" width="${barWidth}" height="${inventoryHeight}" rx="5" fill="#ffd21c" opacity="0.88" />
-          <rect x="${x + barWidth + 10}" y="${inboundY}" width="${barWidth}" height="${inboundHeight}" rx="5" fill="#f6f1df" opacity="${item.inboundTotal ? "0.9" : "0.2"}" />
-          <text x="${x + barWidth / 2}" y="${Math.max(inventoryY - 10, pad.top + 14)}" text-anchor="middle" fill="#fff7bf" font-size="13" font-weight="800">${formatNumber(item.inventoryTotal)}</text>
-          <text x="${x + barWidth + 10 + barWidth / 2}" y="${item.inboundTotal ? Math.max(inboundY - 10, pad.top + 28) : pad.top + innerHeight - 10}" text-anchor="middle" fill="#f6f1df" font-size="13" font-weight="800">${formatNumber(item.inboundTotal)}</text>
-          <text x="${centerX}" y="${Math.max(pendingY - 18, pad.top + 28)}" text-anchor="middle" fill="#ffad33" font-size="13" font-weight="800">${formatNumber(item.pendingTotal)}</text>
-          <text x="${centerX}" y="${height - 18}" text-anchor="middle" fill="#a6a99f" font-size="12">${formatMonthDay(item.date)}</text>
-        `;
-      }).join("")}
-      <polyline points="${points.join(" ")}" fill="none" stroke="#ff9f1c" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
-      ${summaries.map((item, index) => {
-        const [x, y] = points[index].split(",");
-        return `<circle cx="${x}" cy="${y}" r="5" fill="#ff9f1c" stroke="#11151d" stroke-width="2" />`;
-      }).join("")}
-    </svg>
-  `;
-}
-
-function renderRepairPackageTrend(range) {
-  const summaries = range.snapshots.map((snapshot) => {
-    const repair = getProcessValue(snapshot, "维修");
-    const pack = getProcessValue(snapshot, "打包");
-    return {
-      date: snapshot.date,
-      repair,
-      pack
-    };
-  });
-
-  if (!summaries.length) {
-    els.repairPackagePill.textContent = "-";
-    els.repairPackageChart.innerHTML = `<div class="empty-chart">当前范围暂无维修打包数据</div>`;
-    return;
-  }
-
-  const repairTotal = summaries.reduce((total, item) => total + item.repair, 0);
-  const packTotal = summaries.reduce((total, item) => total + item.pack, 0);
-  els.repairPackagePill.textContent = `维修 ${formatNumber(repairTotal)} / 打包 ${formatNumber(packTotal)}`;
-
-  const width = 860;
-  const height = 300;
-  const pad = { top: 34, right: 38, bottom: 48, left: 60 };
-  const innerWidth = width - pad.left - pad.right;
-  const innerHeight = height - pad.top - pad.bottom;
-  const maxValue = Math.max(...summaries.map((item) => item.repair), ...summaries.map((item) => item.pack), 1);
-  const slot = summaries.length > 1 ? innerWidth / (summaries.length - 1) : 0;
-  const xFor = (index) => summaries.length > 1 ? pad.left + slot * index : pad.left + innerWidth / 2;
-  const yFor = (value) => pad.top + innerHeight - (value / maxValue) * innerHeight;
-  const repairPoints = summaries.map((item, index) => `${xFor(index)},${yFor(item.repair)}`);
-  const packPoints = summaries.map((item, index) => `${xFor(index)},${yFor(item.pack)}`);
-
-  els.repairPackageChart.innerHTML = `
-    <svg viewBox="0 0 ${width} ${height}" preserveAspectRatio="none" aria-hidden="true">
-      <rect x="0" y="0" width="${width}" height="${height}" rx="8" fill="#11151d" />
-      <line x1="${pad.left}" y1="${pad.top + innerHeight}" x2="${width - pad.right}" y2="${pad.top + innerHeight}" stroke="#343a44" />
-      <line x1="${pad.left}" y1="${pad.top}" x2="${pad.left}" y2="${pad.top + innerHeight}" stroke="#343a44" />
-      ${[0.25, 0.5, 0.75, 1].map((level) => {
-        const y = pad.top + innerHeight - innerHeight * level;
-        const label = Math.round(maxValue * level);
-        return `
-          <line x1="${pad.left}" y1="${y}" x2="${width - pad.right}" y2="${y}" stroke="#242a33" />
-          <text x="${pad.left - 12}" y="${y + 4}" text-anchor="end" fill="#a6a99f" font-size="11">${label}</text>
-        `;
-      }).join("")}
-      <polyline points="${repairPoints.join(" ")}" fill="none" stroke="#ffd21c" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
-      <polyline points="${packPoints.join(" ")}" fill="none" stroke="#f6f1df" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
-      ${summaries.map((item, index) => {
-        const x = xFor(index);
-        const repairY = yFor(item.repair);
-        const packY = yFor(item.pack);
-        const packLabelY = Math.abs(packY - repairY) < 24 ? packY + 24 : packY - 12;
-        return `
-          <circle cx="${x}" cy="${repairY}" r="6" fill="#ffd21c" stroke="#11151d" stroke-width="2" />
-          <text x="${x}" y="${Math.max(repairY - 14, pad.top + 16)}" text-anchor="middle" fill="#fff7bf" font-size="13" font-weight="900">${formatNumber(item.repair)}</text>
-          <circle cx="${x}" cy="${packY}" r="6" fill="#f6f1df" stroke="#11151d" stroke-width="2" />
-          <text x="${x}" y="${Math.min(Math.max(packLabelY, pad.top + 16), pad.top + innerHeight - 10)}" text-anchor="middle" fill="#f6f1df" font-size="13" font-weight="900">${formatNumber(item.pack)}</text>
-          <text x="${x}" y="${height - 18}" text-anchor="middle" fill="#a6a99f" font-size="12">${formatMonthDay(item.date)}</text>
-        `;
-      }).join("")}
-    </svg>
-  `;
-}
-
-function renderInsights(range) {
-  const summary = summarizeRange(range);
-  const topReturns = summary.skuRows
-    .filter((row) => row.inbound > 0)
-    .sort((a, b) => b.inbound - a.inbound)
-    .slice(0, 3);
-
-  const lowProcesses = summary.processes
-    .filter((process) => process.target > 0 && getRate(process) < 0.9)
-    .sort((a, b) => getRate(a) - getRate(b));
-
-  const insights = [];
-
-  if (topReturns.length) {
-    insights.push({
-      title: "退货集中 SKU",
-      text: topReturns.map((row) => `${row.sku} ${row.inbound} 件`).join("，")
-    });
-  } else {
-    insights.push({
-      title: "退货入库",
-      text: "范围内未录入新增退货件数，库存变化以历史累积为主。"
-    });
-  }
-
-  insights.push({
-    title: "库存压力",
-    text: `${summary.topInventory.sku} 期末待翻新库存最高，占期末待翻新总量 ${formatPercent(summary.topInventory.pending / Math.max(summary.pendingTotal, 1))}。`
-  });
-
-  if (lowProcesses.length) {
-    insights.push({
-      title: "产能未达标流程",
-      text: lowProcesses.map((process) => `${process.name} ${formatPercent(getRate(process))}`).join("，")
-    });
-  } else {
-    insights.push({
-      title: "产能达成",
-      text: `有目标流程整体达成 ${formatPercent(summary.processRate)}，范围输出 ${summary.processActualTotal} 件。`
-    });
-  }
-
-  els.insightList.innerHTML = insights
-    .map((item) => `
-      <div class="insight">
-        <strong>${item.title}</strong>
-        <span>${item.text}</span>
-      </div>
-    `)
-    .join("");
-}
-
-function renderSkuTable(range) {
-  const summary = summarizeRange(range);
-  els.skuRows.innerHTML = summary.skuRows
-    .map((row) => {
-      const status = getSkuStatus(row);
-      return `
-        <tr>
-          <td>${row.sku}</td>
-          <td class="num">${formatNumber(row.inbound)}</td>
-          <td class="num">${formatNumber(row.inventory)}</td>
-          <td class="num">${formatNumber(row.refurbished)}</td>
-          <td class="num">${formatNumber(row.pending)}</td>
-          <td><span class="status-tag ${status.cls}">${status.text}</span></td>
-        </tr>
-      `;
-    })
-    .join("");
-}
-
-function renderInventoryMix(range) {
-  const summary = summarizeRange(range);
-  const sorted = [...summary.skuRows].sort((a, b) => b.pending - a.pending);
-
-  els.inventoryMix.innerHTML = sorted
-    .map((row) => {
-      const pct = row.pending / Math.max(summary.pendingTotal, 1);
-      return `
-        <div class="mix-item">
-          <div class="mix-head">
-            <strong>${row.sku}</strong>
-            <span>${formatNumber(row.pending)} 件 · ${formatPercent(pct)}</span>
-          </div>
-          <div class="bar-track">
-            <div class="bar-fill" style="width:${Math.max(pct * 100, 2)}%"></div>
-          </div>
-        </div>
-      `;
-    })
-    .join("");
-}
-
-function renderProcesses(range) {
-  const summary = summarizeRange(range);
-  els.processSummary.textContent = `输出 ${summary.processActualTotal} / 目标 ${summary.processTargetTotal}`;
-  els.processSummary.className = `pill ${summary.processRate >= 1 ? "good" : "warn"}`;
-
-  els.processCards.innerHTML = summary.processes
-    .map((process) => {
-      const rate = getRate(process);
-      return `
-        <article class="process-card">
-          <h4>${process.name}</h4>
-          <div class="output">${formatNumber(process.actual)}<small> 件</small></div>
-          <div class="rate-line">
-            <span><b>达标率</b><b>${process.target ? formatPercent(rate) : "未设目标"}</b></span>
-            <div class="bar-track">
-              <div class="bar-fill" style="width:${process.target ? Math.min(rate * 100, 130) : 0}%"></div>
-            </div>
-          </div>
-          <p>${process.staff} 人次，目标 ${formatNumber(process.target)} 件，综合人效 ${formatNumber(process.perPerson)} 件/人次</p>
-        </article>
-      `;
-    })
-    .join("");
-
-  els.processRows.innerHTML = summary.processes
-    .map((process) => {
-      const rate = getRate(process);
-      const tagClass = !process.target ? "muted" : rate >= 1 ? "good" : "warn";
-      return `
-        <tr>
-          <td>${process.name}</td>
-          <td class="num">${formatNumber(process.staff)}</td>
-          <td class="num">${formatNumber(process.target)}</td>
-          <td class="num">${formatNumber(process.actual)}</td>
-          <td class="num">${formatNumber(process.perPerson)}</td>
-          <td><span class="status-tag ${tagClass}">${process.target ? formatPercent(rate) : "未设目标"}</span></td>
-          <td>${process.note || "-"}</td>
-        </tr>
-      `;
-    })
-    .join("");
-}
-
-function clearDashboard() {
-  els.overview.innerHTML = "";
-  els.trendChart.innerHTML = `<div class="empty-chart">当前范围暂无趋势数据</div>`;
-  els.repairPackageChart.innerHTML = `<div class="empty-chart">当前范围暂无维修打包数据</div>`;
-  els.repairPackagePill.textContent = "-";
-  els.insightList.innerHTML = "";
-  els.skuRows.innerHTML = "";
-  els.inventoryMix.innerHTML = "";
-  els.processSummary.textContent = "-";
-  els.processCards.innerHTML = "";
-  els.processRows.innerHTML = "";
-}
-
-function getSelectedRange() {
-  const start = state.startDate <= state.endDate ? state.startDate : state.endDate;
-  const end = state.startDate <= state.endDate ? state.endDate : state.startDate;
-  const snapshots = sortedSnapshots.filter((snapshot) => snapshot.date >= start && snapshot.date <= end);
-  return {
-    start,
-    end,
-    snapshots,
-    latest: snapshots[snapshots.length - 1] || null
-  };
-}
-
-function getPreviousRange(range) {
-  const dayCount = daysBetween(range.start, range.end) + 1;
-  const previousEnd = addDays(range.start, -1);
-  const previousStart = addDays(previousEnd, -(dayCount - 1));
-  const snapshots = sortedSnapshots.filter((snapshot) => snapshot.date >= previousStart && snapshot.date <= previousEnd);
-  return {
-    start: previousStart,
-    end: previousEnd,
-    snapshots,
-    latest: snapshots[snapshots.length - 1] || null
-  };
-}
-
-function summarizeRange(range) {
-  const skuMap = new Map();
-  const processMap = new Map();
-
-  range.snapshots.forEach((snapshot) => {
-    snapshot.skuRows.forEach((row) => {
-      const current = skuMap.get(row.sku) || {
-        sku: row.sku,
-        inbound: 0,
-        inventory: 0,
-        refurbished: 0,
-        pending: 0,
-        latestDate: ""
-      };
-
-      current.inbound += row.inbound || 0;
-      current.refurbished += row.refurbished || 0;
-      if (snapshot.date >= current.latestDate) {
-        current.inventory = row.inventory || 0;
-        current.pending = row.pending || 0;
-        current.latestDate = snapshot.date;
-      }
-      skuMap.set(row.sku, current);
-    });
-
-    snapshot.processes.forEach((process) => {
-      const current = processMap.get(process.name) || {
-        name: process.name,
-        staff: 0,
-        target: 0,
-        actual: 0,
-        perPerson: 0,
-        notes: []
-      };
-
-      current.staff += process.staff || 0;
-      current.target += process.target || 0;
-      current.actual += process.actual || 0;
-      if (process.note) current.notes.push(`${formatMonthDay(snapshot.date)} ${process.note}`);
-      processMap.set(process.name, current);
+function chart(id,days,series) {
+  const width=Math.max(320,$(id).clientWidth,days.length*92+80),height=230,pad={left:52,right:28,top:40,bottom:35};
+  const values=series.map((s)=>days.map((d)=>d.record?s.read(d.record):null));
+  const maximum=Math.max(1,...values.flat().filter(valid))*1.14;
+  const x=(i)=>days.length===1?width/2:pad.left+i*(width-pad.left-pad.right)/(days.length-1);
+  const y=(v)=>height-pad.bottom-v/maximum*(height-pad.top-pad.bottom);
+  let svg=`<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="${esc(series.map((s)=>s.name).join('、'))}每日数值" style="min-width:${width}px">`;
+  for(let i=0;i<=4;i++) {const v=maximum*i/4;svg+=`<line x1="${pad.left}" x2="${width-pad.right}" y1="${y(v)}" y2="${y(v)}" stroke="#2c2e31"/><text x="${pad.left-8}" y="${y(v)+4}" text-anchor="end" fill="#909497" font-size="10">${fmt(Math.round(v))}</text>`;}
+  series.forEach((s,k)=>{
+    let active=false,path="";
+    values[k].forEach((v,i)=>{if(!valid(v)){active=false;return;}path+=`${active?'L':'M'}${x(i)},${y(v)} `;active=true;});
+    svg+=`<path d="${path}" fill="none" stroke="${s.color}" stroke-width="2.5"/>`;
+    values[k].forEach((v,i)=>{
+      if(!valid(v)) return;
+      const near=k>0&&valid(values[0][i])&&Math.abs(y(values[0][i])-y(v))<24;
+      const labelY=near?y(v)+18:y(v)-12;
+      svg+=`<circle cx="${x(i)}" cy="${y(v)}" r="4" fill="${s.color}"><title>${days[i].date} ${esc(s.name)}：${fmt(v)}</title></circle><text x="${x(i)}" y="${labelY}" text-anchor="middle" fill="${s.color}" font-size="11">${fmt(v)}</text>`;
     });
   });
-
-  const skuRows = [...skuMap.values()];
-  const processes = [...processMap.values()].map((process) => ({
-    ...process,
-    perPerson: round(process.actual / Math.max(process.staff, 1), 2),
-    note: process.notes.join("；")
-  }));
-
-  const inventoryTotal = skuRows.reduce((total, row) => total + row.inventory, 0);
-  const pendingTotal = skuRows.reduce((total, row) => total + row.pending, 0);
-  const inboundTotal = skuRows.reduce((total, row) => total + row.inbound, 0);
-  const refurbishedTotal = skuRows.reduce((total, row) => total + row.refurbished, 0);
-  const processTargetTotal = processes.reduce((total, process) => total + process.target, 0);
-  const processActualTotal = processes.reduce((total, process) => total + process.actual, 0);
-  const staffTotal = processes.reduce((total, process) => total + process.staff, 0);
-  const topInventory = [...skuRows].sort((a, b) => b.pending - a.pending)[0] || { sku: "-", pending: 0 };
-
-  return {
-    skuRows,
-    processes,
-    returnSkuCount: skuRows.filter((row) => row.inbound > 0).length,
-    inboundTotal,
-    inventoryTotal,
-    pendingTotal,
-    refurbishedTotal,
-    processTargetTotal,
-    processActualTotal,
-    processRate: processActualTotal / Math.max(processTargetTotal, 1),
-    staffTotal,
-    lowRateCount: processes.filter((process) => process.target > 0 && getRate(process) < 0.9).length,
-    topInventory
-  };
+  days.forEach((d,i)=>svg+=`<text x="${x(i)}" y="${height-6}" text-anchor="middle" fill="${d.record?'#b7babd':'#62666a'}" font-size="10">${d.date.slice(5)}</text>`);
+  svg+='</svg>';
+  $(id).innerHTML=`<div class="legend">${series.map((s)=>`<span><i style="background:${s.color}"></i>${s.name}</span>`).join("")}</div><div class="chart-scroll">${svg}</div>`;
+  const container=$(id).querySelector(".chart-scroll");container.scrollLeft=container.scrollWidth;
 }
 
-function summarizeSnapshot(snapshot) {
-  return summarizeRange({
-    start: snapshot.date,
-    end: snapshot.date,
-    snapshots: [snapshot],
-    latest: snapshot
-  });
+function renderLines(rows) {
+  const lines=[...new Set(rows.map((r)=>r.line))];
+  $("lineCards").innerHTML=lines.length?lines.map((line)=>{
+    const selected=rows.filter((r)=>r.line===line);const p=performance(selected);
+    return `<article class="line-card"><h3>${esc(line)}</h3><span class="subtle">有效目标达标率 <b class="${p.rate>=1?'good':'warn'}">${pct(p.rate)}</b> · ${p.targeted} 条有效记录</span><div class="line-kpis"><span>维修<b>${fmt(roleTotal(selected,/维修/))}</b></span><span>打包<b>${fmt(roleTotal(selected,/打包/))}</b></span><span>实际工作人日<b>${fmt(sum(selected,'fte'))}</b></span></div></article>`;
+  }).join(""):'<p class="empty">所选产线在此范围没有记录</p>';
+  const groups=new Map();
+  rows.forEach((r)=>{const key=JSON.stringify([r.line,r.name]);if(!groups.has(key))groups.set(key,[]);groups.get(key).push(r);});
+  $("processRows").innerHTML=[...groups.values()].map((list)=>{
+    const p=performance(list);
+    const notes=list.filter((r)=>r.note).map((r)=>`${r.date} ${r.note}`).join('；');
+    return `<tr>${cells([esc(list[0].line),esc(list[0].name),`${list.filter((r)=>valid(r.actual)).length} / ${list.length}`,fmt(sum(list,'fte')),fmt(sum(list,'target')),fmt(sum(list,'actual')),fmt(p.perPerson),`<span class="${p.rate>=1?'good':p.rate!==null?'warn':'muted'}">${pct(p.rate)}</span>`,esc(notes)||'—'])}</tr>`;
+  }).join("");
 }
 
-function getProcessValue(snapshot, processName) {
-  const process = snapshot.processes.find((item) => item.name === processName);
-  return process ? process.actual || 0 : 0;
+function renderStock(days) {
+  const names=[...new Set(days.flatMap((d)=>d.skuRows.map((r)=>r.sku)))];
+  $("skuRows").innerHTML=names.map((sku)=>{
+    const list=days.flatMap((d)=>d.skuRows.filter((r)=>r.sku===sku));
+    const opening=days[0].skuRows.find((r)=>r.sku===sku)?.opening;
+    const closing=days.at(-1).skuRows.find((r)=>r.sku===sku)?.closing;
+    const delta=valid(opening)&&valid(closing)?closing-opening:null;
+    const anomalies=list.filter((r)=>valid(r.balanceDelta)&&Math.abs(r.balanceDelta)>.001).length;
+    const note=days.at(-1).skuRows.find((r)=>r.sku===sku)?.note;
+    return `<tr>${cells([esc(sku),fmt(opening),fmt(sum(list,'inbound')),fmt(sum(list,'outbound')),fmt(closing),fmt(delta),anomalies?`<span class="warn">${anomalies} 条</span>`:'<span class="muted">—</span>',esc(note)||'—'])}</tr>`;
+  }).join("");
 }
 
-function hasSnapshot(date) {
-  return sortedSnapshots.some((snapshot) => snapshot.date === date);
+function renderDaily(days) {
+  $("dailyCount").textContent=`${days.length} 个记录日`;
+  $("dailyRows").innerHTML=[...days].reverse().map((s)=>{
+    const rows=rowsFor(s);
+    return `<tr>${cells([`<button class="date-button" data-date="${s.date}">${s.date}</button>`,fmt(stockTotal(s)),fmt(sum(s.skuRows,'inbound')),fmt(sum(s.skuRows,'outbound')),fmt(roleTotal(rows,/维修/)),fmt(roleTotal(rows,/打包/)),pct(performance(rows).rate),`${s.issues.length} 项`])}</tr>`;
+  }).join("");
 }
 
-function getSkuStatus(row) {
-  if (row.inbound > 0) return { text: "范围有退货", cls: "warn" };
-  if (row.pending > 500) return { text: "库存高位", cls: "warn" };
-  if (row.pending === 0) return { text: "已清空", cls: "good" };
-  return { text: "稳定", cls: "muted" };
+function renderIssues(days) {
+  const issues=days.flatMap((s)=>s.issues.map((i)=>({...i,date:s.date}))).sort((a,b)=>b.date.localeCompare(a.date)||a.row-b.row);
+  const selected=issues.filter((i)=>!$("issueType").value||i.kind===$("issueType").value);
+  const balance=issues.filter((i)=>i.kind==='balance').length, calc=issues.filter((i)=>i.kind==='calculation').length;
+  $("qualitySummary").textContent=`全仓及全部产线：${issues.length} 项，其中库存差异 ${balance} 项、重算人效差异 ${calc} 项。空值和公式错误不补零；未修改飞书源表。`;
+  $("issuesSummary").textContent=`展开核对事项（${selected.length} 项）`;
+  $("issueRows").innerHTML=selected.map((i)=>`<tr>${cells([i.date,esc(i.subject),`<a href="${esc(state.data.source.url)}&range=A${i.row}:Q${i.row}" target="_blank" rel="noopener">第 ${i.row} 行 ↗</a>`,esc(i.message)])}</tr>`).join("");
 }
 
-function getRate(process) {
-  if (!process.target) return 0;
-  return process.actual / process.target;
-}
-
-function getLastSyncLabel(range) {
-  if (state.manualSyncAt) return formatDateTime(state.manualSyncAt);
-  return getLatestSnapshotSync(range.snapshots) || "-";
-}
-
-function getLatestSnapshotSync(snapshots) {
-  return snapshots
-    .map((snapshot) => snapshot.syncedAt)
-    .filter(Boolean)
-    .sort()
-    .at(-1) || "";
-}
-
-function buildExportText(range) {
-  const summary = summarizeRange(range);
-  return [
-    `芝加哥售后仓范围：${rangeLabel(range.start, range.end)}`,
-    `覆盖快照：${range.snapshots.length} 日`,
-    `退货 SKU 数量：${summary.returnSkuCount}`,
-    `范围退货件数：${summary.inboundTotal}`,
-    `期末总库存：${summary.inventoryTotal}`,
-    `期末待翻新库存：${summary.pendingTotal}`,
-    `流程总输出：${summary.processActualTotal} / 目标 ${summary.processTargetTotal}`,
-    "",
-    "SKU 明细：",
-    ...summary.skuRows.map((row) => `${row.sku}：范围退货 ${row.inbound}，期末库存 ${row.inventory}，期末待翻新 ${row.pending}`),
-    "",
-    "流程输出：",
-    ...summary.processes.map((process) => `${process.name}：实际 ${process.actual}，目标 ${process.target}，达标率 ${process.target ? formatPercent(getRate(process)) : "未设目标"}`)
-  ].join("\n");
-}
-
-function deltaText(current, previous, fallback) {
-  if (previous === undefined || previous === null) return fallback;
-  const delta = current - previous;
-  if (delta === 0) return "较上一周期持平";
-  return `较上一周期${delta > 0 ? "增加" : "减少"} ${formatNumber(Math.abs(delta))}`;
-}
-
-function normalizeDateInput(value, fallback) {
-  if (!value) return fallback;
-  return clampDate(value, earliestSnapshot.date, latestSnapshot.date);
-}
-
-function clampDate(value, min, max) {
-  if (value < min) return min;
-  if (value > max) return max;
-  return value;
-}
-
-function addDays(value, amount) {
-  const date = parseLocalDate(value);
-  date.setDate(date.getDate() + amount);
-  return toDateInputValue(date);
-}
-
-function daysBetween(start, end) {
-  const startDate = parseLocalDate(start);
-  const endDate = parseLocalDate(end);
-  return Math.round((endDate - startDate) / 86400000);
-}
-
-function parseLocalDate(value) {
-  const [year, month, day] = value.split("-").map(Number);
-  return new Date(year, month - 1, day);
-}
-
-function toDateInputValue(date) {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`;
-}
-
-function rangeLabel(start, end) {
-  if (start === end) return formatDate(start);
-  return `${formatDate(start)} - ${formatDate(end)}`;
-}
-
-function round(value, digits = 0) {
-  const factor = 10 ** digits;
-  return Math.round(value * factor) / factor;
-}
-
-function formatNumber(value) {
-  if (typeof value === "string") return value;
-  return new Intl.NumberFormat("zh-CN", { maximumFractionDigits: 2 }).format(value);
-}
-
-function formatPercent(value) {
-  return new Intl.NumberFormat("zh-CN", {
-    style: "percent",
-    maximumFractionDigits: 1
-  }).format(value || 0);
-}
-
-function formatDate(value) {
-  if (!value) return "-";
-  const [year, month, day] = value.split("-");
-  return `${year}/${month}/${day}`;
-}
-
-function formatMonthDay(value) {
-  const [, month, day] = value.split("-");
-  return `${month}/${day}`;
-}
-
-function formatDateTime(value) {
-  const date = value instanceof Date ? value : new Date(value);
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  const hour = String(date.getHours()).padStart(2, "0");
-  const minute = String(date.getMinutes()).padStart(2, "0");
-  return `${year}-${month}-${day} ${hour}:${minute}`;
-}
-
-function showToast(message) {
-  els.toast.textContent = message;
-  els.toast.classList.add("show");
-  window.clearTimeout(showToast.timer);
-  showToast.timer = window.setTimeout(() => {
-    els.toast.classList.remove("show");
-  }, 2200);
-}
+document.querySelectorAll("[data-mode]").forEach((button)=>button.addEventListener("click",()=>{
+  if(!state.data)return;state.mode=button.dataset.mode;
+  state.end=state.data.snapshots.at(-1).date;
+  state.start=state.mode==='all'?state.data.snapshots[0].date:shiftDay(state.end,state.mode==='week'?-6:state.mode==='month'?-29:0);
+  notice("");render();
+}));
+for(const id of ["startDate","endDate"]) $(id).addEventListener("change",()=>{
+  if(!$(id).value||!state.data)return;state.mode='custom';state[id==='startDate'?'start':'end']=boundedDay($(id).value,state.data.snapshots[0].date,state.data.snapshots.at(-1).date);
+  if(state.start>state.end) {if(id==='startDate')state.end=state.start;else state.start=state.end;}
+  notice("");render();
+});
+$("lineSelect").addEventListener("change",()=>{state.line=$("lineSelect").value;render();});
+$("issueType").addEventListener("change",render);
+$("dailyRows").addEventListener("click",(event)=>{const b=event.target.closest('[data-date]');if(!b)return;state.start=state.end=b.dataset.date;state.mode='day';render();window.scrollTo({top:0,behavior:'smooth'});});
+$("refreshData").addEventListener("click",loadData);
+$("syncFeishu").addEventListener("click",()=>{
+  const url=new URL('http://127.0.0.1:8794/refresh');url.searchParams.set('mode','redirect');url.searchParams.set('origin',location.origin);url.searchParams.set('return',location.href);location.assign(url);
+});
+$("exportData").addEventListener("click",()=>{
+  if(!state.data)return;
+  const snapshots=state.data.snapshots.filter((s)=>s.date>=state.start&&s.date<=state.end).map((s)=>({...s,processes:rowsFor(s)}));
+  const blob=new Blob([JSON.stringify({source:state.data.source,syncedAt:state.data.syncedAt,scope:{start:state.start,end:state.end,line:state.line||'全部产线',inventory:'全仓'},snapshots},null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download=`chicago-${state.start}-${state.end}.json`;link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+});
+loadData();

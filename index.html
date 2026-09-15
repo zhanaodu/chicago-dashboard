@@ -1,198 +1,35 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
   <title>芝加哥售后仓看板</title>
-  <link rel="stylesheet" href="./assets/styles.css?v=20260618-refresh3" />
+  <link rel="stylesheet" href="./assets/styles.css?v=20260915-v2">
 </head>
 <body>
-  <div class="app-shell">
-    <aside class="sidebar" aria-label="仪表盘侧栏">
-      <div class="brand">
-        <div class="brand-mark">
-          <span></span>
-        </div>
-        <div>
-          <h1>芝加哥售后仓</h1>
-          <p>每日退货与翻新产能看板</p>
-        </div>
-      </div>
-
-      <nav class="side-nav" aria-label="页面区块">
-        <a href="#overview">总览</a>
-        <a href="#skuTable">退货 SKU 与库存</a>
-        <a href="#processOutput">翻新流程输出</a>
-      </nav>
-    </aside>
-
-    <main class="main">
-      <header class="topbar">
-        <div>
-          <p class="eyebrow">MKT Repair KPI · Chicago After-sales Warehouse</p>
-          <h2>芝加哥售后仓看板</h2>
-        </div>
-        <div class="top-actions">
-          <button class="btn secondary" type="button" id="exportSnapshot">导出快照</button>
-          <button class="btn primary" type="button" id="refreshData">实时刷新</button>
-        </div>
-      </header>
-
-      <section class="range-toolbar" aria-label="日期范围筛选">
-        <div class="range-tabs" role="group" aria-label="快速选择日期范围">
-          <button class="range-tab active" type="button" data-range-mode="day">单日</button>
-          <button class="range-tab" type="button" data-range-mode="week">一周</button>
-          <button class="range-tab" type="button" data-range-mode="month">一个月</button>
-          <button class="range-tab" type="button" data-range-mode="custom">自定义</button>
-        </div>
-        <label class="date-control">
-          <span>开始日期</span>
-          <input id="startDate" type="date" />
-        </label>
-        <label class="date-control">
-          <span>结束日期</span>
-          <input id="endDate" type="date" />
-        </label>
-        <label class="date-control snapshot-control">
-          <span>快速跳转</span>
-          <select id="dateSelect" aria-label="选择已有快照日期"></select>
-        </label>
-      </section>
-
-      <section class="status-strip" aria-live="polite">
-        <div>
-          <span>当前日期范围</span>
-          <strong id="currentDateLabel">-</strong>
-        </div>
-        <div>
-          <span>覆盖快照</span>
-          <strong id="snapshotCountLabel">-</strong>
-        </div>
-        <div>
-          <span>最近同步</span>
-          <strong id="lastSyncLabel">-</strong>
-        </div>
-      </section>
-
-      <section class="notice" id="noticeBox" hidden>
-        <strong>暂无范围数据</strong>
-        <span>请选择包含历史快照的日期范围。</span>
-      </section>
-
-      <section class="kpi-grid" id="overview" aria-label="关键指标"></section>
-
-      <section class="dashboard-grid">
-        <article class="panel span-8">
-          <div class="panel-head">
-            <div>
-              <h3>库存与退货趋势</h3>
-              <p>按日期汇总退货件数、总库存、待翻新库存</p>
-            </div>
-            <span class="pill" id="trendPill">2 日样例</span>
-          </div>
-          <div class="chart-legend" aria-label="图例">
-            <span><i class="legend-inventory"></i>总库存</span>
-            <span><i class="legend-inbound"></i>退货件数</span>
-            <span><i class="legend-pending"></i>待翻新库存</span>
-          </div>
-          <div class="trend-chart" id="trendChart" role="img" aria-label="库存趋势图"></div>
-        </article>
-
-        <article class="panel span-4">
-          <div class="panel-head">
-            <div>
-              <h3>范围重点</h3>
-              <p>需要运营关注的变化</p>
-            </div>
-          </div>
-          <div class="insight-list" id="insightList"></div>
-        </article>
-      </section>
-
-      <section class="dashboard-grid">
-        <article class="panel span-12">
-          <div class="panel-head">
-            <div>
-              <h3>维修 / 打包数量增长</h3>
-              <p>按日期展示维修输出与打包输出的增长变化</p>
-            </div>
-            <span class="pill" id="repairPackagePill">-</span>
-          </div>
-          <div class="chart-legend" aria-label="维修打包图例">
-            <span><i class="legend-repair"></i>维修数量</span>
-            <span><i class="legend-pack"></i>打包数量</span>
-          </div>
-          <div class="line-chart" id="repairPackageChart" role="img" aria-label="维修和打包数量增长折线图"></div>
-        </article>
-      </section>
-
-      <section class="dashboard-grid">
-        <article class="panel span-7" id="skuTable">
-          <div class="panel-head">
-            <div>
-              <h3>退货 SKU 与库存明细</h3>
-              <p>退货与翻新数量按范围汇总，库存取范围最后一天</p>
-            </div>
-          </div>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>SKU / 品类</th>
-                  <th>范围退货</th>
-                  <th>期末总库存</th>
-                  <th>范围翻新</th>
-                  <th>期末待翻新</th>
-                  <th>状态</th>
-                </tr>
-              </thead>
-              <tbody id="skuRows"></tbody>
-            </table>
-          </div>
-        </article>
-
-        <article class="panel span-5">
-          <div class="panel-head">
-            <div>
-              <h3>库存结构</h3>
-            <p>按期末待翻新库存占比</p>
-            </div>
-          </div>
-          <div class="stack-list" id="inventoryMix"></div>
-        </article>
-      </section>
-
-      <section class="panel" id="processOutput">
-        <div class="panel-head">
-          <div>
-            <h3>翻新流程输出</h3>
-            <p>目标、实际和到岗人次按所选范围汇总</p>
-          </div>
-          <span class="pill good" id="processSummary">-</span>
-        </div>
-        <div class="process-grid" id="processCards"></div>
-        <div class="table-wrap compact">
-          <table>
-            <thead>
-              <tr>
-                <th>岗位</th>
-                <th>到岗人次</th>
-                <th>目标产能</th>
-                <th>实际产能</th>
-                <th>人均产能</th>
-                <th>达标率</th>
-                <th>备注</th>
-              </tr>
-            </thead>
-            <tbody id="processRows"></tbody>
-          </table>
-        </div>
-      </section>
-
-    </main>
-  </div>
-
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="./assets/app.js?v=20260618-refresh3"></script>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark" aria-hidden="true">Y</span><div><p class="eyebrow">CHICAGO · AFTER-SALES OPERATIONS</p><h1>芝加哥售后仓看板</h1></div></div>
+    <div class="actions"><a class="button secondary" id="sourceLink" href="https://oh3i1ngnjc.feishu.cn/sheets/OGW6sJsnIh09patZsLzcDz8dnpg?sheet=DrEN0J" target="_blank" rel="noopener">查看源表 ↗</a><button id="exportData" title="下载筛选后的每日记录">↓ 导出数据</button><button id="syncFeishu" title="需在已安装飞书同步服务的 Mac 上使用">同步飞书（本机）</button><button id="refreshData" class="primary">↻ 更新看板</button></div>
+  </header>
+  <main>
+    <section class="toolbar" aria-label="筛选条件">
+      <div class="range-modes" role="group" aria-label="时间范围"><button data-mode="day" class="active">单日</button><button data-mode="week">近一周</button><button data-mode="month">近一月</button><button data-mode="all">全部</button></div>
+      <label>开始日期<input type="date" id="startDate"></label><label>结束日期<input type="date" id="endDate"></label>
+      <label>产线项目<select id="lineSelect"><option value="">全部产线</option></select></label>
+    </section>
+    <div class="status-line" aria-live="polite"><span id="rangeLabel">正在读取数据…</span><span id="syncLabel">最近同步 —</span></div>
+    <div id="message" class="message" role="status" hidden></div>
+    <section class="metrics" id="metrics" aria-label="核心指标"></section>
+    <section class="section" id="trends"><div class="section-heading"><div><p class="eyebrow">DAILY MOVEMENT</p><h2>库存流转与产能趋势</h2></div><span class="subtle">无记录日期留空，空白不作为零</span></div>
+      <div class="chart-grid"><article><h3>期末库存 <small>全仓 · 件</small></h3><div id="inventoryChart" class="chart"></div></article><article><h3>每日入库 / 出库 <small>全仓 · 件</small></h3><div id="flowChart" class="chart"></div></article><article class="wide"><h3>维修 / 打包输出 <small>按产线筛选 · 工序件次</small></h3><div id="outputChart" class="chart"></div></article></div>
+    </section>
+    <section class="section"><div class="section-heading"><div><p class="eyebrow">PRODUCTION LINES</p><h2>各产线流程输出</h2></div><span class="subtle">同一机器可能经过多个工序，工序间不累计为成品数</span></div><div id="lineCards" class="line-grid"></div><div class="table-wrap"><table><caption>所选日期范围内，按产线及岗位汇总已录入值</caption><thead><tr><th>产线</th><th>岗位</th><th>有产出 / 工序记录数</th><th>实际工作人日</th><th>目标（已录入）</th><th>输出（已录入）</th><th>人效</th><th>达标率</th><th>源表备注</th></tr></thead><tbody id="processRows"></tbody></table></div></section>
+    <section class="section"><div class="section-heading"><div><p class="eyebrow">WAREHOUSE LEDGER</p><h2>库存与进出库明细</h2></div><span class="subtle">全仓数据 · 不随产线筛选</span></div><div class="table-wrap"><table><caption>库存取范围首末记录，进出库只累计已录入值；“—”表示未录入</caption><thead><tr><th>SKU / 品类</th><th>首日期初</th><th>入库（已录入）</th><th>出库（已录入）</th><th>末日期末</th><th>净库存变化</th><th>库存待核对记录</th><th>末日备注</th></tr></thead><tbody id="skuRows"></tbody></table></div></section>
+    <section class="section"><div class="section-heading"><div><p class="eyebrow">DAILY RECORDS</p><h2>每日数据</h2></div><span id="dailyCount" class="subtle"></span></div><div class="table-wrap"><table><caption>库存为全仓快照，维修和打包按当前产线筛选；点击日期查看当天</caption><thead><tr><th>日期</th><th>期末库存</th><th>入库（已录入）</th><th>出库（已录入）</th><th>维修（已录入）</th><th>打包（已录入）</th><th>有效目标达标率</th><th>核对事项</th></tr></thead><tbody id="dailyRows"></tbody></table></div></section>
+    <section class="section"><div class="section-heading"><div><p class="eyebrow">DATA QUALITY</p><h2>数据核对</h2></div><label>核对类型<select id="issueType"><option value="">全部事项</option><option value="balance">库存差异</option><option value="calculation">计算差异</option><option value="missing">缺少人数</option><option value="formula">公式错误</option><option value="text">非数值记录</option></select></label></div><p id="qualitySummary" class="subtle"></p><details><summary id="issuesSummary">展开核对事项</summary><div class="table-wrap quality-table"><table><thead><tr><th>日期</th><th>对象</th><th>源表行</th><th>说明</th></tr></thead><tbody id="issueRows"></tbody></table></div></details></section>
+    <footer><strong>统计口径</strong><p>库存不跨天相加。人效 = 有完整记录的产出合计 ÷ 对应实际工作人日；达标率 = 有正目标且产出已录入的工序产出合计 ÷ 对应目标合计。总人数行不参与工序求和，原表公式错误保留在核对列表。历史日期无记录时不补零。</p><span id="sourceLabel">库容流转表New</span></footer>
+  </main>
+  <script src="./assets/app.js?v=20260915-v2" defer></script>
 </body>
 </html>
