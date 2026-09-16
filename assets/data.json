@@ -5,8 +5,8 @@
     "sheetId": "DrEN0J",
     "url": "https://oh3i1ngnjc.feishu.cn/sheets/OGW6sJsnIh09patZsLzcDz8dnpg?sheet=DrEN0J"
   },
-  "syncedAt": "2026-09-15T15:58:42+08:00",
-  "snapshotCount": 87,
+  "syncedAt": "2026-09-16T10:00:13+08:00",
+  "snapshotCount": 89,
   "snapshots": [
     {
       "date": "2026-05-28",
@@ -230,7 +230,7 @@
           "message": "达标率原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-05-29",
@@ -454,7 +454,7 @@
           "message": "达标率原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-05-30",
@@ -678,7 +678,7 @@
           "message": "达标率原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-05-31",
@@ -894,7 +894,7 @@
         }
       ],
       "issues": [],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-06-01",
@@ -1110,7 +1110,7 @@
         }
       ],
       "issues": [],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-06-02",
@@ -1326,7 +1326,7 @@
         }
       ],
       "issues": [],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-06-03",
@@ -1527,7 +1527,7 @@
         }
       ],
       "issues": [],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-06-04",
@@ -1728,7 +1728,7 @@
         }
       ],
       "issues": [],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-06-05",
@@ -1929,7 +1929,7 @@
         }
       ],
       "issues": [],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-06-06",
@@ -2159,7 +2159,7 @@
           "message": "达标率原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-06-08",
@@ -2382,7 +2382,7 @@
           "message": "有产出但实际工作人数缺失或为零，无法计算人效"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-06-09",
@@ -2598,7 +2598,7 @@
           "message": "达标率原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-06-10",
@@ -2799,7 +2799,7 @@
         }
       ],
       "issues": [],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-06-11",
@@ -3000,7 +3000,7 @@
         }
       ],
       "issues": [],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-06-12",
@@ -3201,7 +3201,7 @@
         }
       ],
       "issues": [],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-06-15",
@@ -3402,7 +3402,7 @@
         }
       ],
       "issues": [],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-06-16",
@@ -3603,7 +3603,7 @@
         }
       ],
       "issues": [],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-06-17",
@@ -3804,7 +3804,7 @@
         }
       ],
       "issues": [],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-06-18",
@@ -4005,7 +4005,7 @@
         }
       ],
       "issues": [],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-06-19",
@@ -4256,7 +4256,7 @@
           "message": "达标率原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-06-20",
@@ -4521,7 +4521,7 @@
           "message": "达标率原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-06-22",
@@ -4722,7 +4722,7 @@
         }
       ],
       "issues": [],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-06-23",
@@ -4923,7 +4923,7 @@
         }
       ],
       "issues": [],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-06-24",
@@ -5124,7 +5124,7 @@
         }
       ],
       "issues": [],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-06-25",
@@ -5325,7 +5325,7 @@
         }
       ],
       "issues": [],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-06-30",
@@ -5611,7 +5611,7 @@
           "message": "达标率原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-07-01",
@@ -5897,7 +5897,7 @@
           "message": "达标率原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-07-02",
@@ -6183,7 +6183,7 @@
           "message": "达标率原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-07-03",
@@ -6469,7 +6469,7 @@
           "message": "达标率原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-07-06",
@@ -6670,7 +6670,7 @@
         }
       ],
       "issues": [],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-07-07",
@@ -6871,7 +6871,7 @@
         }
       ],
       "issues": [],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-07-08",
@@ -7072,7 +7072,7 @@
         }
       ],
       "issues": [],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-07-10",
@@ -7397,7 +7397,7 @@
           "message": "达标率原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-07-11",
@@ -7778,7 +7778,7 @@
           "message": "达标率原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-07-13",
@@ -8180,7 +8180,7 @@
           "message": "达标率原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-07-14",
@@ -8526,7 +8526,7 @@
           "message": "达标率原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-07-15",
@@ -8879,7 +8879,7 @@
           "message": "达标率原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-07-16",
@@ -9218,7 +9218,7 @@
           "message": "达标率原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-07-17",
@@ -9669,7 +9669,7 @@
           "message": "每日人均KPI原值 KPI待定，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-07-18",
@@ -10142,7 +10142,7 @@
           "message": "每日人均KPI原值 KPI待定，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-07-20",
@@ -10601,7 +10601,7 @@
           "message": "每日人均KPI原值 KPI待定，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-07-21",
@@ -11060,7 +11060,7 @@
           "message": "每日人均KPI原值 KPI待定，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-07-22",
@@ -11484,7 +11484,7 @@
           "message": "每日人均KPI原值 KPI待定，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-07-23",
@@ -11893,7 +11893,7 @@
           "message": "每日人均KPI原值 KPI待定，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-07-24",
@@ -12323,7 +12323,7 @@
           "message": "每日人均KPI原值 KPI待定，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-07-27",
@@ -12746,7 +12746,7 @@
           "message": "每日人均KPI原值 KPI待定，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-07-28",
@@ -13169,7 +13169,7 @@
           "message": "每日人均KPI原值 KPI待定，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-07-29",
@@ -13592,7 +13592,7 @@
           "message": "每日人均KPI原值 KPI待定，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-07-30",
@@ -14015,7 +14015,7 @@
           "message": "每日人均KPI原值 KPI待定，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-07-31",
@@ -14438,7 +14438,7 @@
           "message": "每日人均KPI原值 KPI待定，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-08-03",
@@ -14883,7 +14883,7 @@
           "message": "每日人均KPI原值 KPI待定，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-08-04",
@@ -15314,7 +15314,7 @@
           "message": "每日人均KPI原值 KPI待定，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-08-05",
@@ -15746,7 +15746,7 @@
           "message": "每日人均KPI原值 KPI待定，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-08-06",
@@ -16163,7 +16163,7 @@
           "message": "达标率原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-08-07",
@@ -16552,7 +16552,7 @@
           "message": "达标率原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-08-08",
@@ -16969,7 +16969,7 @@
           "message": "达标率原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-08-10",
@@ -17379,7 +17379,7 @@
           "message": "达标率原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-08-11",
@@ -17775,7 +17775,7 @@
           "message": "达标率原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-08-12",
@@ -18171,7 +18171,7 @@
           "message": "达标率原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-08-13",
@@ -18581,7 +18581,7 @@
           "message": "达标率原值 #REF!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-08-14",
@@ -18977,7 +18977,7 @@
           "message": "达标率原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-08-15",
@@ -19394,7 +19394,7 @@
           "message": "达标率原值 #REF!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-08-17",
@@ -19804,7 +19804,7 @@
           "message": "达标率原值 #REF!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-08-18",
@@ -20221,7 +20221,7 @@
           "message": "达标率原值 #REF!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-08-19",
@@ -20596,7 +20596,7 @@
           "message": "有产出但实际工作人数缺失或为零，无法计算人效"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-08-20",
@@ -21006,7 +21006,7 @@
           "message": "有产出但实际工作人数缺失或为零，无法计算人效"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-08-21",
@@ -21444,7 +21444,7 @@
           "message": "人均产能原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-08-22",
@@ -21875,7 +21875,7 @@
           "message": "人均产能原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-08-24",
@@ -22285,7 +22285,7 @@
           "message": "人均产能原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-08-25",
@@ -22688,7 +22688,7 @@
           "message": "人均产能原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-08-26",
@@ -23091,7 +23091,7 @@
           "message": "人均产能原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-08-27",
@@ -23522,7 +23522,7 @@
           "message": "人均产能原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-08-28",
@@ -23953,7 +23953,7 @@
           "message": "人均产能原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-08-29",
@@ -24377,7 +24377,7 @@
           "message": "人均产能原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-08-31",
@@ -24860,7 +24860,7 @@
           "message": "达标率原值 #REF!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-09-01",
@@ -25336,7 +25336,7 @@
           "message": "达标率原值 #REF!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-09-02",
@@ -25785,7 +25785,7 @@
           "message": "达标率原值 #REF!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-09-03",
@@ -26220,7 +26220,7 @@
           "message": "有产出但实际工作人数缺失或为零，无法计算人效"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-09-04",
@@ -26634,7 +26634,7 @@
           "message": "达标率原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-09-05",
@@ -27077,7 +27077,7 @@
           "message": "达标率原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-09-07",
@@ -27550,7 +27550,7 @@
           "message": "达标率原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-09-08",
@@ -28037,7 +28037,7 @@
           "message": "达标率原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-09-09",
@@ -28524,7 +28524,7 @@
           "message": "达标率原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-09-10",
@@ -28990,7 +28990,7 @@
           "message": "有产出但实际工作人数缺失或为零，无法计算人效"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-09-11",
@@ -29463,7 +29463,7 @@
           "message": "达标率原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-09-12",
@@ -30006,7 +30006,7 @@
           "message": "达标率原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     },
     {
       "date": "2026-09-14",
@@ -30017,8 +30017,8 @@
           "sourceRow": 1162,
           "opening": 1081.0,
           "inbound": 42.0,
-          "outbound": null,
-          "closing": 1123.0,
+          "outbound": 5.0,
+          "closing": 1118.0,
           "production": null,
           "note": "含3寄修",
           "balanceDelta": 0.0
@@ -30039,8 +30039,8 @@
           "sourceRow": 1164,
           "opening": 495.0,
           "inbound": 4.0,
-          "outbound": null,
-          "closing": 499.0,
+          "outbound": 6.0,
+          "closing": 493.0,
           "production": null,
           "note": "",
           "balanceDelta": 0.0
@@ -30523,7 +30523,1160 @@
           "message": "达标率原值 #DIV/0!，保留为缺失"
         }
       ],
-      "syncedAt": "2026-09-15T15:58:42+08:00"
+      "syncedAt": "2026-09-16T10:00:13+08:00"
+    },
+    {
+      "date": "2026-09-15",
+      "sourceRow": 1185,
+      "skuRows": [
+        {
+          "sku": "车身 Core",
+          "sourceRow": 1186,
+          "opening": 1118.0,
+          "inbound": 12.0,
+          "outbound": 3.0,
+          "closing": 1127.0,
+          "production": null,
+          "note": "",
+          "balanceDelta": 0.0
+        },
+        {
+          "sku": "扫雪头 Snow Blower",
+          "sourceRow": 1187,
+          "opening": 291.0,
+          "inbound": null,
+          "outbound": null,
+          "closing": 291.0,
+          "production": null,
+          "note": "",
+          "balanceDelta": 0.0
+        },
+        {
+          "sku": "割草头 Lawn Mower",
+          "sourceRow": 1188,
+          "opening": 493.0,
+          "inbound": 5.0,
+          "outbound": 7.0,
+          "closing": 491.0,
+          "production": null,
+          "note": "",
+          "balanceDelta": 0.0
+        },
+        {
+          "sku": "割草头 Pro",
+          "sourceRow": 1189,
+          "opening": 482.0,
+          "inbound": 5.0,
+          "outbound": null,
+          "closing": 487.0,
+          "production": null,
+          "note": "",
+          "balanceDelta": 0.0
+        },
+        {
+          "sku": "吹风头 Blower",
+          "sourceRow": 1190,
+          "opening": 118.0,
+          "inbound": null,
+          "outbound": null,
+          "closing": 118.0,
+          "production": null,
+          "note": "",
+          "balanceDelta": 0.0
+        },
+        {
+          "sku": "无线充 Docking Station",
+          "sourceRow": 1191,
+          "opening": 562.0,
+          "inbound": 4.0,
+          "outbound": null,
+          "closing": 566.0,
+          "production": null,
+          "note": "",
+          "balanceDelta": 0.0
+        },
+        {
+          "sku": "电池 Battery",
+          "sourceRow": 1192,
+          "opening": 868.0,
+          "inbound": 2.0,
+          "outbound": null,
+          "closing": 870.0,
+          "production": null,
+          "note": "",
+          "balanceDelta": 0.0
+        },
+        {
+          "sku": "Trimmer",
+          "sourceRow": 1193,
+          "opening": 117.0,
+          "inbound": 1.0,
+          "outbound": null,
+          "closing": 119.0,
+          "production": null,
+          "note": "",
+          "balanceDelta": 1.0
+        },
+        {
+          "sku": "Accessories",
+          "sourceRow": 1194,
+          "opening": 125.0,
+          "inbound": null,
+          "outbound": null,
+          "closing": 125.0,
+          "production": null,
+          "note": "",
+          "balanceDelta": 0.0
+        }
+      ],
+      "processes": [
+        {
+          "line": "翻新车身",
+          "name": "拆机/冲洗",
+          "sourceRow": 1187,
+          "staff": null,
+          "fte": null,
+          "target": 0.0,
+          "actual": null,
+          "perPerson": null,
+          "rate": null,
+          "kpi": 5.0,
+          "reportedPerPerson": null,
+          "reportedRate": null,
+          "note": ""
+        },
+        {
+          "line": "翻新车身",
+          "name": "维修",
+          "sourceRow": 1188,
+          "staff": 4.0,
+          "fte": 3.5,
+          "target": 14.0,
+          "actual": 18.0,
+          "perPerson": 5.142857142857143,
+          "rate": 1.2857142857142858,
+          "kpi": 4.0,
+          "reportedPerPerson": 5.1,
+          "reportedRate": 1.29,
+          "note": "含4 台寄修"
+        },
+        {
+          "line": "翻新车身",
+          "name": "二次检测",
+          "sourceRow": 1189,
+          "staff": 1.0,
+          "fte": 1.0,
+          "target": 12.0,
+          "actual": 10.0,
+          "perPerson": 10.0,
+          "rate": 0.8333333333333334,
+          "kpi": 12.0,
+          "reportedPerPerson": 4.0,
+          "reportedRate": 0.83,
+          "note": "7/8 pass"
+        },
+        {
+          "line": "翻新车身",
+          "name": "二次清洁",
+          "sourceRow": 1190,
+          "staff": 2.0,
+          "fte": 2.0,
+          "target": 5.0,
+          "actual": 4.0,
+          "perPerson": 2.0,
+          "rate": 0.8,
+          "kpi": 6.0,
+          "reportedPerPerson": 2.0,
+          "reportedRate": 0.8,
+          "note": "完成机器"
+        },
+        {
+          "line": "翻新车身",
+          "name": "打包",
+          "sourceRow": 1191,
+          "staff": null,
+          "fte": 0.2,
+          "target": 2.4,
+          "actual": 2.0,
+          "perPerson": 10.0,
+          "rate": 0.8333333333333334,
+          "kpi": 12.0,
+          "reportedPerPerson": 10.0,
+          "reportedRate": 0.83,
+          "note": ""
+        },
+        {
+          "line": "翻新割草头",
+          "name": "冲洗",
+          "sourceRow": 1192,
+          "staff": null,
+          "fte": null,
+          "target": 0.0,
+          "actual": null,
+          "perPerson": null,
+          "rate": null,
+          "kpi": 8.0,
+          "reportedPerPerson": null,
+          "reportedRate": null,
+          "note": ""
+        },
+        {
+          "line": "翻新割草头",
+          "name": "维修",
+          "sourceRow": 1193,
+          "staff": null,
+          "fte": null,
+          "target": 0.0,
+          "actual": null,
+          "perPerson": null,
+          "rate": null,
+          "kpi": 4.0,
+          "reportedPerPerson": null,
+          "reportedRate": null,
+          "note": ""
+        },
+        {
+          "line": "翻新割草头",
+          "name": "二次检测",
+          "sourceRow": 1194,
+          "staff": null,
+          "fte": null,
+          "target": 0.0,
+          "actual": null,
+          "perPerson": null,
+          "rate": null,
+          "kpi": 16.0,
+          "reportedPerPerson": null,
+          "reportedRate": null,
+          "note": ""
+        },
+        {
+          "line": "翻新割草头",
+          "name": "二次清洁",
+          "sourceRow": 1195,
+          "staff": null,
+          "fte": null,
+          "target": 0.0,
+          "actual": null,
+          "perPerson": null,
+          "rate": null,
+          "kpi": 6.0,
+          "reportedPerPerson": null,
+          "reportedRate": null,
+          "note": ""
+        },
+        {
+          "line": "翻新割草头",
+          "name": "打包",
+          "sourceRow": 1196,
+          "staff": null,
+          "fte": 0.5,
+          "target": 6.0,
+          "actual": 5.0,
+          "perPerson": 10.0,
+          "rate": 0.8333333333333334,
+          "kpi": 12.0,
+          "reportedPerPerson": 10.0,
+          "reportedRate": 0.83,
+          "note": ""
+        },
+        {
+          "line": "入库/整库/机动",
+          "name": "扫码/入库",
+          "sourceRow": 1197,
+          "staff": 3.0,
+          "fte": 3.0,
+          "target": 0.0,
+          "actual": 29.0,
+          "perPerson": 9.666666666666666,
+          "rate": null,
+          "kpi": null,
+          "reportedPerPerson": null,
+          "reportedRate": 1.0,
+          "note": ""
+        },
+        {
+          "line": "入库/整库/机动",
+          "name": "整库",
+          "sourceRow": 1198,
+          "staff": 2.0,
+          "fte": 2.0,
+          "target": 0.0,
+          "actual": null,
+          "perPerson": null,
+          "rate": null,
+          "kpi": null,
+          "reportedPerPerson": null,
+          "reportedRate": 1.0,
+          "note": ""
+        },
+        {
+          "line": "入库/整库/机动",
+          "name": "出库",
+          "sourceRow": 1199,
+          "staff": null,
+          "fte": null,
+          "target": 0.0,
+          "actual": null,
+          "perPerson": null,
+          "rate": null,
+          "kpi": null,
+          "reportedPerPerson": null,
+          "reportedRate": null,
+          "note": ""
+        },
+        {
+          "line": "退运机身",
+          "name": "拆机扫描/冲洗",
+          "sourceRow": 1200,
+          "staff": null,
+          "fte": null,
+          "target": 0.0,
+          "actual": null,
+          "perPerson": null,
+          "rate": null,
+          "kpi": 5.0,
+          "reportedPerPerson": null,
+          "reportedRate": null,
+          "note": ""
+        },
+        {
+          "line": "退运机身",
+          "name": "打包",
+          "sourceRow": 1201,
+          "staff": null,
+          "fte": 1.0,
+          "target": 12.0,
+          "actual": 19.0,
+          "perPerson": 19.0,
+          "rate": 1.5833333333333333,
+          "kpi": 12.0,
+          "reportedPerPerson": 19.0,
+          "reportedRate": 1.58,
+          "note": ""
+        },
+        {
+          "line": "退运草头",
+          "name": "冲洗",
+          "sourceRow": 1202,
+          "staff": 6.0,
+          "fte": 4.9,
+          "target": 49.0,
+          "actual": 50.0,
+          "perPerson": 10.204081632653061,
+          "rate": 1.0204081632653061,
+          "kpi": 10.0,
+          "reportedPerPerson": 10.2,
+          "reportedRate": 1.02,
+          "note": "清理下水道1.5h，产能*0.81"
+        },
+        {
+          "line": "退运草头",
+          "name": "打包",
+          "sourceRow": 1203,
+          "staff": null,
+          "fte": 0.5,
+          "target": 8.0,
+          "actual": 6.0,
+          "perPerson": 12.0,
+          "rate": 0.75,
+          "kpi": 16.0,
+          "reportedPerPerson": 12.0,
+          "reportedRate": 0.75,
+          "note": ""
+        },
+        {
+          "line": "退运雪头",
+          "name": "冲洗",
+          "sourceRow": 1204,
+          "staff": null,
+          "fte": null,
+          "target": 0.0,
+          "actual": null,
+          "perPerson": null,
+          "rate": null,
+          "kpi": 10.0,
+          "reportedPerPerson": null,
+          "reportedRate": null,
+          "note": ""
+        },
+        {
+          "line": "退运雪头",
+          "name": "打包",
+          "sourceRow": 1205,
+          "staff": 5.0,
+          "fte": 3.0,
+          "target": 36.0,
+          "actual": 42.0,
+          "perPerson": 14.0,
+          "rate": 1.1666666666666667,
+          "kpi": 12.0,
+          "reportedPerPerson": 14.0,
+          "reportedRate": 1.17,
+          "note": ""
+        }
+      ],
+      "reportedTotals": [
+        {
+          "line": "翻新车身",
+          "name": "总人数",
+          "sourceRow": 1186,
+          "staff": 23.0,
+          "fte": 21.6,
+          "target": null,
+          "actual": null,
+          "perPerson": null,
+          "rate": null,
+          "kpi": null,
+          "reportedPerPerson": null,
+          "reportedRate": 1.01,
+          "note": ""
+        }
+      ],
+      "issues": [
+        {
+          "row": 1187,
+          "subject": "翻新车身 · 拆机/冲洗",
+          "field": "perPerson",
+          "kind": "formula",
+          "message": "人均产能原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1187,
+          "subject": "翻新车身 · 拆机/冲洗",
+          "field": "rate",
+          "kind": "formula",
+          "message": "达标率原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1189,
+          "subject": "翻新车身 · 二次检测",
+          "field": "perPerson",
+          "kind": "calculation",
+          "message": "原表人效 4，按实际工作人数重算 10.00"
+        },
+        {
+          "row": 1192,
+          "subject": "翻新割草头 · 冲洗",
+          "field": "perPerson",
+          "kind": "formula",
+          "message": "人均产能原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1192,
+          "subject": "翻新割草头 · 冲洗",
+          "field": "rate",
+          "kind": "formula",
+          "message": "达标率原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1193,
+          "subject": "Trimmer",
+          "field": "balance",
+          "kind": "balance",
+          "message": "期末与期初＋已录入入库－已录入出库相差 1 件，需核对空白或调整项"
+        },
+        {
+          "row": 1193,
+          "subject": "翻新割草头 · 维修",
+          "field": "perPerson",
+          "kind": "formula",
+          "message": "人均产能原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1193,
+          "subject": "翻新割草头 · 维修",
+          "field": "rate",
+          "kind": "formula",
+          "message": "达标率原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1194,
+          "subject": "翻新割草头 · 二次检测",
+          "field": "perPerson",
+          "kind": "formula",
+          "message": "人均产能原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1194,
+          "subject": "翻新割草头 · 二次检测",
+          "field": "rate",
+          "kind": "formula",
+          "message": "达标率原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1195,
+          "subject": "翻新割草头 · 二次清洁",
+          "field": "perPerson",
+          "kind": "formula",
+          "message": "人均产能原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1195,
+          "subject": "翻新割草头 · 二次清洁",
+          "field": "rate",
+          "kind": "formula",
+          "message": "达标率原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1200,
+          "subject": "退运机身 · 拆机扫描/冲洗",
+          "field": "perPerson",
+          "kind": "formula",
+          "message": "人均产能原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1200,
+          "subject": "退运机身 · 拆机扫描/冲洗",
+          "field": "rate",
+          "kind": "formula",
+          "message": "达标率原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1204,
+          "subject": "退运雪头 · 冲洗",
+          "field": "perPerson",
+          "kind": "formula",
+          "message": "人均产能原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1204,
+          "subject": "退运雪头 · 冲洗",
+          "field": "rate",
+          "kind": "formula",
+          "message": "达标率原值 #DIV/0!，保留为缺失"
+        }
+      ],
+      "syncedAt": "2026-09-16T10:00:13+08:00"
+    },
+    {
+      "date": "2026-09-16",
+      "sourceRow": 1207,
+      "skuRows": [
+        {
+          "sku": "车身 Core",
+          "sourceRow": 1208,
+          "opening": 1118.0,
+          "inbound": null,
+          "outbound": null,
+          "closing": 1118.0,
+          "production": null,
+          "note": "",
+          "balanceDelta": 0.0
+        },
+        {
+          "sku": "扫雪头 Snow Blower",
+          "sourceRow": 1209,
+          "opening": 291.0,
+          "inbound": null,
+          "outbound": null,
+          "closing": 291.0,
+          "production": null,
+          "note": "",
+          "balanceDelta": 0.0
+        },
+        {
+          "sku": "割草头 Lawn Mower",
+          "sourceRow": 1210,
+          "opening": 493.0,
+          "inbound": null,
+          "outbound": null,
+          "closing": 493.0,
+          "production": null,
+          "note": "",
+          "balanceDelta": 0.0
+        },
+        {
+          "sku": "割草头 Pro",
+          "sourceRow": 1211,
+          "opening": 482.0,
+          "inbound": null,
+          "outbound": null,
+          "closing": 482.0,
+          "production": null,
+          "note": "",
+          "balanceDelta": 0.0
+        },
+        {
+          "sku": "吹风头 Blower",
+          "sourceRow": 1212,
+          "opening": 118.0,
+          "inbound": null,
+          "outbound": null,
+          "closing": 118.0,
+          "production": null,
+          "note": "",
+          "balanceDelta": 0.0
+        },
+        {
+          "sku": "无线充 Docking Station",
+          "sourceRow": 1213,
+          "opening": 562.0,
+          "inbound": null,
+          "outbound": null,
+          "closing": 562.0,
+          "production": null,
+          "note": "",
+          "balanceDelta": 0.0
+        },
+        {
+          "sku": "电池 Battery",
+          "sourceRow": 1214,
+          "opening": 868.0,
+          "inbound": null,
+          "outbound": null,
+          "closing": 868.0,
+          "production": null,
+          "note": "",
+          "balanceDelta": 0.0
+        },
+        {
+          "sku": "Trimmer",
+          "sourceRow": 1215,
+          "opening": 117.0,
+          "inbound": null,
+          "outbound": null,
+          "closing": 117.0,
+          "production": null,
+          "note": "",
+          "balanceDelta": 0.0
+        },
+        {
+          "sku": "Accessories",
+          "sourceRow": 1216,
+          "opening": 125.0,
+          "inbound": null,
+          "outbound": null,
+          "closing": 125.0,
+          "production": null,
+          "note": "",
+          "balanceDelta": 0.0
+        }
+      ],
+      "processes": [
+        {
+          "line": "翻新车身",
+          "name": "拆机/冲洗",
+          "sourceRow": 1209,
+          "staff": null,
+          "fte": null,
+          "target": 0.0,
+          "actual": null,
+          "perPerson": null,
+          "rate": null,
+          "kpi": 5.0,
+          "reportedPerPerson": null,
+          "reportedRate": null,
+          "note": ""
+        },
+        {
+          "line": "翻新车身",
+          "name": "维修",
+          "sourceRow": 1210,
+          "staff": null,
+          "fte": null,
+          "target": 0.0,
+          "actual": null,
+          "perPerson": null,
+          "rate": null,
+          "kpi": 4.0,
+          "reportedPerPerson": null,
+          "reportedRate": null,
+          "note": ""
+        },
+        {
+          "line": "翻新车身",
+          "name": "二次检测",
+          "sourceRow": 1211,
+          "staff": null,
+          "fte": null,
+          "target": 0.0,
+          "actual": null,
+          "perPerson": null,
+          "rate": null,
+          "kpi": 12.0,
+          "reportedPerPerson": null,
+          "reportedRate": null,
+          "note": ""
+        },
+        {
+          "line": "翻新车身",
+          "name": "二次清洁",
+          "sourceRow": 1212,
+          "staff": null,
+          "fte": null,
+          "target": 0.0,
+          "actual": null,
+          "perPerson": null,
+          "rate": null,
+          "kpi": 6.0,
+          "reportedPerPerson": null,
+          "reportedRate": null,
+          "note": ""
+        },
+        {
+          "line": "翻新车身",
+          "name": "打包",
+          "sourceRow": 1213,
+          "staff": null,
+          "fte": null,
+          "target": 0.0,
+          "actual": null,
+          "perPerson": null,
+          "rate": null,
+          "kpi": 12.0,
+          "reportedPerPerson": null,
+          "reportedRate": null,
+          "note": ""
+        },
+        {
+          "line": "翻新割草头",
+          "name": "冲洗",
+          "sourceRow": 1214,
+          "staff": null,
+          "fte": null,
+          "target": 0.0,
+          "actual": null,
+          "perPerson": null,
+          "rate": null,
+          "kpi": 8.0,
+          "reportedPerPerson": null,
+          "reportedRate": null,
+          "note": ""
+        },
+        {
+          "line": "翻新割草头",
+          "name": "维修",
+          "sourceRow": 1215,
+          "staff": null,
+          "fte": null,
+          "target": 0.0,
+          "actual": null,
+          "perPerson": null,
+          "rate": null,
+          "kpi": 4.0,
+          "reportedPerPerson": null,
+          "reportedRate": null,
+          "note": ""
+        },
+        {
+          "line": "翻新割草头",
+          "name": "二次检测",
+          "sourceRow": 1216,
+          "staff": null,
+          "fte": null,
+          "target": 10.0,
+          "actual": null,
+          "perPerson": null,
+          "rate": null,
+          "kpi": 16.0,
+          "reportedPerPerson": null,
+          "reportedRate": 0.0,
+          "note": ""
+        },
+        {
+          "line": "翻新割草头",
+          "name": "二次清洁",
+          "sourceRow": 1217,
+          "staff": null,
+          "fte": null,
+          "target": 0.0,
+          "actual": null,
+          "perPerson": null,
+          "rate": null,
+          "kpi": 6.0,
+          "reportedPerPerson": null,
+          "reportedRate": null,
+          "note": ""
+        },
+        {
+          "line": "翻新割草头",
+          "name": "打包",
+          "sourceRow": 1218,
+          "staff": null,
+          "fte": null,
+          "target": 0.0,
+          "actual": null,
+          "perPerson": null,
+          "rate": null,
+          "kpi": 12.0,
+          "reportedPerPerson": null,
+          "reportedRate": null,
+          "note": ""
+        },
+        {
+          "line": "入库/整库/机动",
+          "name": "扫码/入库",
+          "sourceRow": 1219,
+          "staff": null,
+          "fte": null,
+          "target": 0.0,
+          "actual": null,
+          "perPerson": null,
+          "rate": null,
+          "kpi": null,
+          "reportedPerPerson": null,
+          "reportedRate": 1.0,
+          "note": ""
+        },
+        {
+          "line": "入库/整库/机动",
+          "name": "整库",
+          "sourceRow": 1220,
+          "staff": null,
+          "fte": null,
+          "target": 0.0,
+          "actual": null,
+          "perPerson": null,
+          "rate": null,
+          "kpi": null,
+          "reportedPerPerson": null,
+          "reportedRate": 1.0,
+          "note": ""
+        },
+        {
+          "line": "入库/整库/机动",
+          "name": "出库",
+          "sourceRow": 1221,
+          "staff": null,
+          "fte": null,
+          "target": 0.0,
+          "actual": null,
+          "perPerson": null,
+          "rate": null,
+          "kpi": null,
+          "reportedPerPerson": null,
+          "reportedRate": null,
+          "note": ""
+        },
+        {
+          "line": "退运机身",
+          "name": "拆机扫描/冲洗",
+          "sourceRow": 1222,
+          "staff": null,
+          "fte": null,
+          "target": 0.0,
+          "actual": null,
+          "perPerson": null,
+          "rate": null,
+          "kpi": 5.0,
+          "reportedPerPerson": null,
+          "reportedRate": null,
+          "note": ""
+        },
+        {
+          "line": "退运机身",
+          "name": "打包",
+          "sourceRow": 1223,
+          "staff": null,
+          "fte": null,
+          "target": null,
+          "actual": null,
+          "perPerson": null,
+          "rate": null,
+          "kpi": 12.0,
+          "reportedPerPerson": null,
+          "reportedRate": null,
+          "note": ""
+        },
+        {
+          "line": "退运草头",
+          "name": "冲洗",
+          "sourceRow": 1224,
+          "staff": null,
+          "fte": null,
+          "target": 0.0,
+          "actual": null,
+          "perPerson": null,
+          "rate": null,
+          "kpi": 10.0,
+          "reportedPerPerson": null,
+          "reportedRate": null,
+          "note": ""
+        },
+        {
+          "line": "退运草头",
+          "name": "打包",
+          "sourceRow": 1225,
+          "staff": null,
+          "fte": null,
+          "target": 0.0,
+          "actual": null,
+          "perPerson": null,
+          "rate": null,
+          "kpi": 16.0,
+          "reportedPerPerson": null,
+          "reportedRate": null,
+          "note": ""
+        },
+        {
+          "line": "退运雪头",
+          "name": "冲洗",
+          "sourceRow": 1226,
+          "staff": null,
+          "fte": null,
+          "target": 0.0,
+          "actual": null,
+          "perPerson": null,
+          "rate": null,
+          "kpi": 10.0,
+          "reportedPerPerson": null,
+          "reportedRate": null,
+          "note": ""
+        },
+        {
+          "line": "退运雪头",
+          "name": "打包",
+          "sourceRow": 1227,
+          "staff": null,
+          "fte": null,
+          "target": 0.0,
+          "actual": null,
+          "perPerson": null,
+          "rate": null,
+          "kpi": 12.0,
+          "reportedPerPerson": null,
+          "reportedRate": null,
+          "note": ""
+        }
+      ],
+      "reportedTotals": [
+        {
+          "line": "翻新车身",
+          "name": "总人数",
+          "sourceRow": 1208,
+          "staff": 0.0,
+          "fte": 0.0,
+          "target": null,
+          "actual": null,
+          "perPerson": null,
+          "rate": null,
+          "kpi": null,
+          "reportedPerPerson": null,
+          "reportedRate": 0.67,
+          "note": ""
+        }
+      ],
+      "issues": [
+        {
+          "row": 1209,
+          "subject": "翻新车身 · 拆机/冲洗",
+          "field": "perPerson",
+          "kind": "formula",
+          "message": "人均产能原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1209,
+          "subject": "翻新车身 · 拆机/冲洗",
+          "field": "rate",
+          "kind": "formula",
+          "message": "达标率原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1210,
+          "subject": "翻新车身 · 维修",
+          "field": "perPerson",
+          "kind": "formula",
+          "message": "人均产能原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1210,
+          "subject": "翻新车身 · 维修",
+          "field": "rate",
+          "kind": "formula",
+          "message": "达标率原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1211,
+          "subject": "翻新车身 · 二次检测",
+          "field": "perPerson",
+          "kind": "formula",
+          "message": "人均产能原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1211,
+          "subject": "翻新车身 · 二次检测",
+          "field": "rate",
+          "kind": "formula",
+          "message": "达标率原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1212,
+          "subject": "翻新车身 · 二次清洁",
+          "field": "perPerson",
+          "kind": "formula",
+          "message": "人均产能原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1212,
+          "subject": "翻新车身 · 二次清洁",
+          "field": "rate",
+          "kind": "formula",
+          "message": "达标率原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1213,
+          "subject": "翻新车身 · 打包",
+          "field": "perPerson",
+          "kind": "formula",
+          "message": "人均产能原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1213,
+          "subject": "翻新车身 · 打包",
+          "field": "rate",
+          "kind": "formula",
+          "message": "达标率原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1214,
+          "subject": "翻新割草头 · 冲洗",
+          "field": "perPerson",
+          "kind": "formula",
+          "message": "人均产能原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1214,
+          "subject": "翻新割草头 · 冲洗",
+          "field": "rate",
+          "kind": "formula",
+          "message": "达标率原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1215,
+          "subject": "翻新割草头 · 维修",
+          "field": "perPerson",
+          "kind": "formula",
+          "message": "人均产能原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1215,
+          "subject": "翻新割草头 · 维修",
+          "field": "rate",
+          "kind": "formula",
+          "message": "达标率原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1216,
+          "subject": "翻新割草头 · 二次检测",
+          "field": "perPerson",
+          "kind": "formula",
+          "message": "人均产能原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1217,
+          "subject": "翻新割草头 · 二次清洁",
+          "field": "perPerson",
+          "kind": "formula",
+          "message": "人均产能原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1217,
+          "subject": "翻新割草头 · 二次清洁",
+          "field": "rate",
+          "kind": "formula",
+          "message": "达标率原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1218,
+          "subject": "翻新割草头 · 打包",
+          "field": "perPerson",
+          "kind": "formula",
+          "message": "人均产能原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1218,
+          "subject": "翻新割草头 · 打包",
+          "field": "rate",
+          "kind": "formula",
+          "message": "达标率原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1222,
+          "subject": "退运机身 · 拆机扫描/冲洗",
+          "field": "perPerson",
+          "kind": "formula",
+          "message": "人均产能原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1222,
+          "subject": "退运机身 · 拆机扫描/冲洗",
+          "field": "rate",
+          "kind": "formula",
+          "message": "达标率原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1223,
+          "subject": "退运机身 · 打包",
+          "field": "perPerson",
+          "kind": "formula",
+          "message": "人均产能原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1223,
+          "subject": "退运机身 · 打包",
+          "field": "rate",
+          "kind": "formula",
+          "message": "达标率原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1224,
+          "subject": "退运草头 · 冲洗",
+          "field": "perPerson",
+          "kind": "formula",
+          "message": "人均产能原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1224,
+          "subject": "退运草头 · 冲洗",
+          "field": "rate",
+          "kind": "formula",
+          "message": "达标率原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1225,
+          "subject": "退运草头 · 打包",
+          "field": "perPerson",
+          "kind": "formula",
+          "message": "人均产能原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1225,
+          "subject": "退运草头 · 打包",
+          "field": "rate",
+          "kind": "formula",
+          "message": "达标率原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1226,
+          "subject": "退运雪头 · 冲洗",
+          "field": "perPerson",
+          "kind": "formula",
+          "message": "人均产能原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1226,
+          "subject": "退运雪头 · 冲洗",
+          "field": "rate",
+          "kind": "formula",
+          "message": "达标率原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1227,
+          "subject": "退运雪头 · 打包",
+          "field": "perPerson",
+          "kind": "formula",
+          "message": "人均产能原值 #DIV/0!，保留为缺失"
+        },
+        {
+          "row": 1227,
+          "subject": "退运雪头 · 打包",
+          "field": "rate",
+          "kind": "formula",
+          "message": "达标率原值 #DIV/0!，保留为缺失"
+        }
+      ],
+      "syncedAt": "2026-09-16T10:00:13+08:00"
     }
   ]
 }
